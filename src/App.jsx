@@ -1,5 +1,16 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import NavSection from './components/NavSection'
 // import './App.css'
+
+
+function App(){
+    return (
+        <div>
+            <NavSection />
+        </div>
+    )
+}
+
+
+export default App;
 
