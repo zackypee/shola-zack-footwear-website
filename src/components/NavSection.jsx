@@ -17,17 +17,45 @@ function NavSection(){
         {label:"Collections",link: "#"},
         {label:"Login",link: "#"},
     ];
+    const mdLinks =[
+        {label: "Home", link: "#"},
+        {label: "About", link: "#"},
+        {label: "Contact Us", link: "#"},
+    ]
+
 
     return(
        <nav className="w-screen h-10 shadow-xl content-center top-0 left-0">
-        <div className="flex justify-between px-4 ">
+        <div className="flex justify-between md:justify-around px-4 ">
             {/* Logo */}
             <div><a href="">ZS</a></div>
+
+
+            {/* md:links */}
+            <div className="hidden md:flex gap-5">
+                {mdLinks.map((k,i)=> (
+                    <a key={i} href="{k.link}">{k.label}</a>
+                ))}
+            </div>
+
+
+            {/* drop down */}
+            <button className="hidden md:flex group relative cursor-pointer ">Categories
+                <div className="absolute top-full right-0 rounded-lg p-3 shadow-md bg-white group-hover:scale-y-0
+                scale-y-0 group-focus:scale-y-100 transition-transform origin-top duration-200 ease-out flex flex-col" >
+                    <a className="active hover:bg-gray-100">Men</a>
+                    <a className="active hover:bg-gray-100">Women</a>
+                    <a className="active hover:bg-gray-100">Kids</a>
+
+                </div>
+            </button>
+
             {/* Menubar */}
             <div className="flex gap-2">
-                <div><GiShoppingCart size={30}/></div>
-                <div>< IoMdMenu onClick={()=> setBarOpen(true)} size={30} className="cursor-pointer"/></div>   
+                <div><GiShoppingCart size={30} /></div>
+                <div>< IoMdMenu onClick={()=> setBarOpen(true)} size={30} className="cursor-pointer md:hidden"/></div>   
             </div>
+
 
             {/* Side bar */}
            
