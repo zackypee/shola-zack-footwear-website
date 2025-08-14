@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+
+.quick-links li a:hover{
+    color: rgb(60, 219, 219);
+    font-weight: 900;
+    font-size: larger;
+}
+
+.categories li a:hover{
+    color: rgb(60, 219, 219);
+    font-weight: 900;
+    font-size: larger;
+}
+.footer-policy li a:hover{
+    color: rgb(60, 219, 219);
+    font-weight: 900;
+    font-size: larger;
+}
+
