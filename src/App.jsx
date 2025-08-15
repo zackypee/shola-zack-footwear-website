@@ -1,9 +1,8 @@
 
 import NavSection from './components/NavSection'
 import Banner from './components/Banner'
-import Trending from './components/Trending';
+import Trending from './components/Trending'
 import Footer from './components/Footer'
-
 import './index.css'
 
 
