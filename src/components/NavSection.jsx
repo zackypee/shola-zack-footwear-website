@@ -25,7 +25,7 @@ function NavSection(){
 
 
     return(
-       <nav className="w-screen h-10 shadow-xl content-center top-0 left-0">
+       <nav className="w-screen fixed bg-white h-10 shadow-xl content-center top-0 left-0 z-50">
         <div className="flex justify-between md:justify-around px-4 ">
             {/* Logo */}
             <div><a href="">ZS</a></div>
