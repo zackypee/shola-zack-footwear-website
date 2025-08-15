@@ -25,7 +25,7 @@ function NavSection(){
 
 
     return(
-       <nav className="w-screen h-10 shadow-xl content-center top-0 left-0">
+       <nav className="w-screen fixed bg-white h-10 shadow-xl content-center top-0 left-0 z-50">
         <div className="flex justify-between md:justify-around px-4 ">
             {/* Logo */}
             <div><a href="">ZS</a></div>
@@ -62,7 +62,7 @@ function NavSection(){
           <div className={`h-screen w-screen fixed bg-black/50 top-0 right-0 md:hidden flex transition-all duration-300 ease-in
              ${barOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}>
 
-             <section className={`h-[300px] w-56 text-black font-bold bg-white text-center flex-col ml-auto transform transition-transform duration-300 ease-in-out ${
+             <section className={`h-screen w-screen text-black font-bold bg-white text-center flex-col ml-auto transform transition-transform duration-300 ease-in-out ${
                 barOpen ? "translate-x-0": "translate-x-full"}`}>
             
                <div className="flex flex-col gap-3  mt-10">
