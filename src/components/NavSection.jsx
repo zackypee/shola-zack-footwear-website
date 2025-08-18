@@ -27,7 +27,7 @@ function NavSection(){
 
 
     return(
-      <nav className="w-screen fixed bg-white h-10 shadow-xl content-center top-0 left-0 z-50">
+      <nav className="w-screen fixed bg-white h-14 shadow-xl content-center top-0 left-0 z-50">
         <div className="flex justify-between md:justify-around mx-4 ">
             {/* Logo */}
             <div><a href="">ZS</a></div>
@@ -67,7 +67,7 @@ function NavSection(){
              <section className={`flex h-screen w-screen text-black font-bold bg-white  flex-col transform transition-transform duration-300 ease-in-out justify-between ${
                 barOpen ? "translate-x-0": "translate-x-full"}`}>
              {/* side bar content */}
-               <div className="flex flex-col gap-3 mt-8">
+               <div className="flex flex-col gap-3 mt-4">
                   <div className="flex items-center justify-between content-center  h-14  shadow-md">
                      <div className="content-center mx-4">
                          < LiaTimesSolid onClick={()=> setBarOpen(false)} size={30} className="  cursor-pointer" />
