@@ -73,8 +73,8 @@ function NavSection(){
                          < LiaTimesSolid onClick={()=> setBarOpen(false)} size={30} className="  cursor-pointer" />
                      </div>
                      <div className="flex content-center gap-6 mr-4">
-                         <IoSearchOutline size={30} />
-                         <HiOutlineShoppingBag size={30} />
+                         <IoSearchOutline size={30} className="font-bold" />
+                         <HiOutlineShoppingBag size={30} className="font-bold" />
                       </div>
                   </div>
                   <div className="flex flex-col gap-3 mt-2">
