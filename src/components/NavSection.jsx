@@ -7,6 +7,9 @@ import { IoMdMenu } from "react-icons/io";
 import { LiaTimesSolid } from "react-icons/lia";
 import { IoSearchOutline } from "react-icons/io5";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
+import { CiUser } from "react-icons/ci";
+
+
 
 
 function NavSection(){
@@ -20,41 +23,47 @@ function NavSection(){
         {label:"Login",link: "#"},
     ];
     const mdLinks =[
-        {label: "Home", link: "#"},
-        {label: "About", link: "#"},
+        {label: "Home", link: "/"},
+        {label: "About", link: "/Men"},
         {label: "Contact Us", link: "#"},
     ]
 
 
     return(
-      <nav className="w-screen fixed bg-white h-14 shadow-xl content-center top-0 left-0 z-50">
+      <nav className="w-screen fixed bg-gray-100 h-14 shadow-xl content-center top-0 left-0 z-50">
         <div className="flex justify-between md:justify-around mx-4 ">
             {/* Logo */}
             <div><a href="">ZS</a></div>
 
 
             {/* md:links */}
-            <div className="hidden md:flex gap-5">
-                {mdLinks.map((k,i)=> (
-                    <a key={i} href="{k.link}">{k.label}</a>
-                ))}
-            </div>
+             <div className="hidden md:flex gap-5 bg-white rounded-xl w-sm h-8 justify-center items-center ">
+                 <div className="gap-5 flex no-underline text-black">
+                    {mdLinks.map((k,i)=> (
+                    <a className="" key={i} href="{k.link}">{k.label}</a>
+                 ))}
+                 </div>
+                 
+                
+                 {/* drop down */}
+                  <button className="hidden md:flex group relative cursor-pointer ">Categories
+                      <div className="absolute top-full items-center right-0 rounded-lg p-3 shadow-md bg-white group-hover:scale-y-0
+                           scale-y-0 group-focus:scale-y-100 transition-transform origin-top duration-200 ease-out flex flex-col" >
+                           <a className="active hover:bg-gray-100">Men</a>
+                           <a className="active hover:bg-gray-100">Women</a>
+                           <a className="active hover:bg-gray-100">Kids</a>
+                     </div>
+                  </button>  
+              </div>
 
 
-            {/* drop down */}
-            <button className="hidden md:flex group relative cursor-pointer ">Categories
-                <div className="absolute top-full right-0 rounded-lg p-3 shadow-md bg-white group-hover:scale-y-0
-                scale-y-0 group-focus:scale-y-100 transition-transform origin-top duration-200 ease-out flex flex-col" >
-                    <a className="active hover:bg-gray-100">Men</a>
-                    <a className="active hover:bg-gray-100">Women</a>
-                    <a className="active hover:bg-gray-100">Kids</a>
-
-                </div>
-            </button>
+           
 
             {/* Menubar */}
-            <div className="flex gap-2">
-                <div><GiShoppingCart size={30} /></div>
+            <div className="flex gap-2 mt-1.5">
+                <div><IoSearchOutline size={20} className="font-bold bg-white w-8 rounded-2xl hidden md:flex " /></div>
+                <div><CiUser size={20} className="font-bold bg-white w-8 rounded-2xl hidden md:flex" /></div>
+                <div><HiOutlineShoppingBag size={20} className="bg-white w-8 rounded-2xl hidden md:flex" /></div>
                 <div>< IoMdMenu onClick={()=> setBarOpen(true)} size={30} className="cursor-pointer md:hidden"/></div>   
             </div>
 
