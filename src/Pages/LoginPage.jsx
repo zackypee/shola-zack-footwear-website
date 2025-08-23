@@ -25,18 +25,18 @@ function LoginPage(){
                 </div>
                 <form action="" className='mt-4'>
                     <div className='flex flex-col gap-4  '>
-                        <input id="email" type="email" name="email" required autocomplete="email" placeholder='Email address' className='placeholder-gray-500 placeholder-opacity-75 h-12 w-[400px] bg-gray-200
+                        <input id="email" type="email" name="email" required autoComplete="email" placeholder='Email address' className='placeholder-gray-500 placeholder-opacity-75 h-12 w-[400px] bg-gray-200
                         rounded-sm px-3 py-1.5 sm:text-sm/6 outline-1 -outline-offset-1 outline-white/10
                         focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500' />
                        <div className='relative '>
                           <input id="password" 
                           type={showPassword ? "text" : "password"} name="password" 
-                         required autocomplete="current-password" placeholder='Password' className='placeholder-gray-500 placeholder-opacity-75 h-12 w-[400px] bg-gray-200
+                         required autoComplete="current-password" placeholder='Password' className='placeholder-gray-500 placeholder-opacity-75 h-12 w-[400px] bg-gray-200
                          rounded-sm px-3 py-1.5 sm:text-sm/6 outline-1 -outline-offset-1 outline-white/10
                          focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500' />
                          <button type='button'
                              onClick={()=>setShowPassword(!showPassword)} className=' absolute inset-y-0 hover:text-gray-700 right-3 justify-self-end flex items-center '>
-                             {showPassword ? <AiOutlineEyeInvisible className='text-gray-400' size={20} /> : <AiOutlineEye className='text-gray-400' size={20} />}
+                             {showPassword ? < AiOutlineEye className='text-gray-400' size={20} /> : <AiOutlineEyeInvisible className='text-gray-400' size={20} />}
                             </button>
                        </div>
                         <p className='text-xs font-medium text-end'>Forgot Password?</p>
