@@ -8,6 +8,12 @@ import { LiaTimesSolid } from "react-icons/lia";
 import { IoSearchOutline } from "react-icons/io5";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { CiUser } from "react-icons/ci";
+import { NavLink } from "react-router-dom";
+import About from "../Pages/About";
+import Contact from "../Pages/Contact";
+import LoginPage from "../Pages/LoginPage";
+import Men from "../Pages/Men";
+
 
 
 
@@ -16,16 +22,16 @@ function NavSection(){
     const[barOpen,setBarOpen] = useState(false)
 
     const navLinks = [
-        {label:"Home",link: "#" },
-        {label:"About",link: "#" },
-        {label:"Contact",link: "#"},
-        {label:"Collections",link: "#"},
-        {label:"Login",link: "#"},
+        {label:"Home",link: "/" },
+        {label:"About",link: "/about" },
+        {label:"Contact",link: "/contact"},
+        {label:"Collections",link: "collections"},
+        {label:"Login",link: "/login"},
     ];
     const mdLinks =[
         {label: "Home", link: "/"},
-        {label: "About", link: "/Men"},
-        {label: "Contact Us", link: "#"},
+        {label: "About", link: "/about"},
+        {label: "Contact Us", link: "/contact"},
     ]
 
 
@@ -40,7 +46,15 @@ function NavSection(){
              <div className="hidden md:flex gap-5 bg-white rounded-xl w-sm h-8 justify-center items-center ">
                  <div className="gap-5 flex no-underline text-black">
                     {mdLinks.map((k,i)=> (
-                    <a className="" key={i} href="{k.link}">{k.label}</a>
+                    <NavLink
+                        key={i} 
+                         to={k.link}
+                         className = {({isActive}) =>
+                         isActive ? "text-blue-500 font-bold" : "text-black"
+                         } 
+                     >
+                           {k.label}
+                    </NavLink>
                  ))}
                  </div>
                  
@@ -87,17 +101,26 @@ function NavSection(){
                       </div>
                   </div>
                   <div className="flex flex-col gap-3 mt-2">
-                   <div>
-                      <div className="h-14 shadow-sm px-4 text-lg font-bold content-center"><a href="">Home</a></div>
+                   <div className="flex flex-col gap-3 mt-2">
+                    {navLinks.map((l,i)=> (
+                        <NavLink
+                        key={i}
+                        to={l.link}
+                        className="h-14 shadow-sm px-4 text-lg font-bold content-center" >
+                            {l.label}
+                        </NavLink>
+                    ))
+                    }
+                      {/* <div ><a href="">Home</a></div>
                       <div className="h-14 shadow-sm px-4 border-t-0 text-lg font-bold content-center"><a href="">Shop</a></div>
                       <div className="h-14 shadow-sm px-4 border-t-0 text-lg font-bold content-center"><a href="">Contact</a></div>
-                      <div className="h-14 shadow-sm px-4 border-t-0 text-lg font-bold content-center"><a href="">About</a></div>
+                      <div className="h-14 shadow-sm px-4 border-t-0 text-lg font-bold content-center"><a href="">About</a></div> */}
                    </div>
                   </div>   
              </div>
-             <div className="mb-14">
-                 <button className="w-sm h-12 text-center font-bold border mx-4">Sign Up</button>
-                 <button className="w-sm h-12 text-center text-white bg-black mt-4 mx-4">Log In</button>
+             <div className="mb-14 flex flex-col items-center">
+                 <NavLink to="/login" className="w-sm h-12 text-center font-bold border mx-4  content-center">Sign Up</NavLink>
+                 <NavLink className="w-sm h-12 text-center text-white bg-black mt-4 mx-4 content-center">Log In</NavLink>
              </div>
              </section>
             </div>
