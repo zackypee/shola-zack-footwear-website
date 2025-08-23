@@ -4,7 +4,7 @@ function Banner() {
   const newArrival = [
     { url: "/shoe1.jpg" },
     { url: "/shoe2.jpg" },
-    { url: "/shoe3.jpg" },
+    { url: "/shoe6.jpg" },
     { url: "/shoe4.jpg" }
   ];
 
