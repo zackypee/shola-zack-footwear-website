@@ -12,6 +12,7 @@ import Men from  './Pages/Men'
 import About from './Pages/About'
 import Contact from './Pages/Contact'
 import LoginPage from './Pages/LoginPage'
+import SignUp from './Pages/SignUp'
 
 
 
@@ -38,6 +39,7 @@ function App(){
            <Route path='/contact' element ={<Contact/>} />
            <Route path='/about' element ={<About/>} />
            <Route path='/login' element ={<LoginPage/>} />
+           <Route path='/signup' element ={<SignUp/>} />
 
             </Routes>
         
