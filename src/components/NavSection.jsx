@@ -119,7 +119,7 @@ function NavSection(){
                   </div>   
              </div>
              <div className="mb-14 flex flex-col items-center">
-                 <NavLink to="/login" className="w-sm h-12 text-center font-bold border mx-4  content-center">Sign Up</NavLink>
+                 <NavLink to="/signup" className="w-sm h-12 text-center font-bold border mx-4  content-center">Sign Up</NavLink>
                  <NavLink to="/login" className="w-sm h-12 text-center text-white bg-black mt-4 mx-4 content-center">Log In</NavLink>
              </div>
              </section>
