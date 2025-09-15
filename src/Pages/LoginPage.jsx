@@ -18,12 +18,12 @@ function LoginPage(){
             {/* login info */}
             <div className='flex flex-col'>
                 <div className='flex items-center gap-4 justify-center'>
-                    <div className='bg-blue-700 rounded-3xl h-10 w-10 content-center justify-center px-1.5'><GiMorgueFeet className='text-white' size={25} /></div>
                     <p className='font-bold text-2xl'>ZS </p>
+                     <div className='bg-blue-700 rounded-3xl h-10 w-10 content-center justify-center px-1.5'><GiMorgueFeet className='text-white' size={25} /></div>
                 </div>
                 <div className='text-center'>
                     <h1 className='font-bold text-4xl mt-4'>Welcome Back</h1>
-                    <p className='text-xs text-gray-400 mt-2'>Please login to your account</p>
+                    <p className='text-sm text-gray-400 mt-2'>Please login to your account</p>
                 </div>
                 <form action="" className='mt-4'>
                     <div className='flex flex-col gap-4  '>

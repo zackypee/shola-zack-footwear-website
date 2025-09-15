@@ -13,6 +13,8 @@ import About from "../Pages/About";
 import Contact from "../Pages/Contact";
 import LoginPage from "../Pages/LoginPage";
 import Men from "../Pages/Men";
+import { GiMorgueFeet } from "react-icons/gi";
+
 
 
 
@@ -37,7 +39,10 @@ function NavSection(){
       <nav className="w-screen fixed bg-gray-100 h-14 shadow-xl content-center top-0 left-0 z-50">
         <div className="flex justify-between md:justify-around mx-4 ">
             {/* Logo */}
-            <div><a href="">ZS</a></div>
+                <div className="flex justify-center items-center gap-2">     
+                <a href="" className="text-2xl">ZS</a>
+                <div className='bg-blue-700 rounded-3xl h-10 w-10 content-center justify-center px-1.5'><GiMorgueFeet className='text-white' size={25} /></div>
+                </div>
 
 
             {/* md:links */}
@@ -59,11 +64,11 @@ function NavSection(){
                 
                  {/* drop down */}
                   <button className="hidden md:flex group relative cursor-pointer ">Categories
-                      <div className="absolute top-full items-center right-0 rounded-lg p-3 shadow-md bg-white group-hover:scale-y-0
+                      <div className="absolute top-full items-left right-0 rounded-lg p-3 shadow-md bg-white group-hover:scale-y-0
                            scale-y-0 group-focus:scale-y-100 transition-transform origin-top duration-200 ease-out flex flex-col" >
-                           <a className="active hover:bg-gray-100">Men</a>
-                           <a className="active hover:bg-gray-100">Women</a>
-                           <a className="active hover:bg-gray-100">Kids</a>
+                           <a className="active hover:bg-gray-100 hover:w-14 hover:rounded">Men</a>
+                           <a className="active hover:bg-gray-100 hover:w-14 hover:rounded">Women</a>
+                           <a className="active hover:bg-gray-100 hover:w-14 hover:rounded">Kids</a>
                      </div>
                   </button>  
               </div>
@@ -73,10 +78,17 @@ function NavSection(){
 
             {/* Menubar */}
             <div className="flex gap-2 mt-1.5">
-                <div><IoSearchOutline size={20} className="font-bold bg-white w-8 rounded-2xl hidden md:flex " /></div>
-                <div><CiUser size={20} className="font-bold bg-white w-8 rounded-2xl hidden md:flex" /></div>
-                <div><HiOutlineShoppingBag size={20} className="bg-white w-8 rounded-2xl hidden md:flex" /></div>
-                <div>< IoMdMenu onClick={()=> setBarOpen(true)} size={30} className="cursor-pointer md:hidden"/></div>   
+                 <div><IoSearchOutline size={20} className="font-bold bg-white w-8 rounded-2xl hidden md:flex " /></div>
+                 <button className="hidden md:flex group relative cursor-pointer "><CiUser size={20} className="font-bold bg-white w-8 rounded-2xl hidden md:flex" /> 
+                  <div className="absolute top-full w-24 items-center right-0 rounded-lg p-4 shadow-md bg-white group-hover:scale-y-0
+                     scale-y-0 group-focus:scale-y-100 transition-transform origin-top duration-200 ease-out flex flex-col" > 
+                     <NavLink to="/login"> <a className="active hover:bg-gray-100  hover:rounded hover:w-auto">Log In</a></NavLink>
+                     <NavLink to="/signup"><a className="active hover:bg-gray-100 hover:w-24">Sign Up</a></NavLink>
+                  </div>
+
+                 </button>
+                 <div><HiOutlineShoppingBag size={20} className="bg-white w-8 rounded-2xl hidden md:flex" /></div>
+                 <div>< IoMdMenu onClick={()=> setBarOpen(true)} size={30} className="cursor-pointer md:hidden"/></div>   
             </div>
 
 
@@ -109,10 +121,7 @@ function NavSection(){
                         </NavLink>
                     ))
                     }
-                      {/* <div ><a href="">Home</a></div>
-                      <div className="h-14 shadow-sm px-4 border-t-0 text-lg font-bold content-center"><a href="">Shop</a></div>
-                      <div className="h-14 shadow-sm px-4 border-t-0 text-lg font-bold content-center"><a href="">Contact</a></div>
-                      <div className="h-14 shadow-sm px-4 border-t-0 text-lg font-bold content-center"><a href="">About</a></div> */}
+                     
                    </div>
                   </div>   
              </div>
