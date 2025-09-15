@@ -22,7 +22,7 @@ function SignUp(){
                 </div>
                 <div className='text-center'>
                     <h1 className='font-bold text-4xl mt-4'>Welcome Back</h1>
-                    <p className='text-xs text-gray-400 mt-2'>Please login to your account</p>
+                    <p className='text-sm text-gray-400 mt-2'>Please login to your account</p>
                 </div>
                 <form action="" className='mt-4'>
                     <div className='flex flex-col gap-4  '>
@@ -59,7 +59,7 @@ function SignUp(){
                     </div>
                 </form>
                 <div className='mt-8'>
-                    <button className='text-white font-bold  bg-blue-600 w-[400px] rounded-sm h-12'>Login</button>
+                    <button className='text-white font-bold  bg-blue-600 w-[400px] rounded-sm h-12'>Sign Up</button>
                     <div className='flex items-center justify-center gap-1.5 mt-4'>
                         <hr className=' w-20 border-gray-300' />
                         <span className='text-xs text-gray-400'>Or Sign Up With</span>
@@ -72,7 +72,7 @@ function SignUp(){
                     <button className='border border-gray-200 w-[190px] h-12 rounded-sm flex gap-2 items-center justify-center font-bold'><SiFacebook size={25} className='text-blue-600'/>Facebook</button>
                 </div>
                 <div>
-                    <p className='text-xs text-gray-400 text-center mt-4'>Already have an account? <span className='text-blue-600 underline'><NavLink to="/login">Sign Up</NavLink></span></p>
+                    <p className='text-xs text-gray-400 text-center mt-4'>Already have an account? <span className='text-blue-600 underline'><NavLink to="/login">Login</NavLink></span></p>
                 </div>
 
             </div>

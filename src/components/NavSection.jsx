@@ -13,6 +13,8 @@ import About from "../Pages/About";
 import Contact from "../Pages/Contact";
 import LoginPage from "../Pages/LoginPage";
 import Men from "../Pages/Men";
+import { GiMorgueFeet } from "react-icons/gi";
+
 
 
 
@@ -39,7 +41,10 @@ function NavSection(){
       <nav className="w-screen fixed bg-gray-100 h-14 shadow-xl content-center top-0 left-0 z-50">
         <div className="flex justify-between md:justify-around mx-4 ">
             {/* Logo */}
-            <div><a href="">ZS</a></div>
+                <div className="flex justify-center items-center gap-2">     
+                <a href="" className="text-2xl">ZS</a>
+                <div className='bg-blue-700 rounded-3xl h-10 w-10 content-center justify-center px-1.5'><GiMorgueFeet className='text-white' size={25} /></div>
+                </div>
 
 
             {/* md:links */}
