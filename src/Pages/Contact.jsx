@@ -1,14 +1,16 @@
 import React from 'react'
 import { AiOutlineUser} from "react-icons/ai";
 import { MdOutlineEmail } from "react-icons/md";
+import Footer from '../components/Footer'
 
 const Contact = () => {
   return (
-     <div className='flex mt-14 justify-center items-center gap-10'>
+    <div>
+       <div className='flex mt-20 justify-center items-center gap-10 mb-14'>
        <div className='w-96 '>
-        <img className='rounded-2xl' src="/login.png" alt="" />
+          <img className='rounded-2xl' src="/contact.png" alt="" />
        </div>
-       <div className=' flex flex-col  justify-center items-center' >
+       <div className=' flex flex-col  justify-center items-center ' >
          <div className='w-24 rounded-2xl text-xs text-blue-500 bg-blue-300 text-center'>Contact Us</div>
          <div>
           <h1 className='text-3xl font-bold'>Let's Get In Touch.</h1>
@@ -53,6 +55,11 @@ const Contact = () => {
          </form>
          <div><button className='w-[400px] h-8 bg-blue-600 text-white text-xs rounded-2xl'>Submit Form</button></div>
        </div>
+      
+    </div>
+     <div>
+      <Footer/>
+     </div>
     </div>
   )
 }
