@@ -16,8 +16,6 @@ import Men from "../Pages/Men";
 
 
 
-
-
 function NavSection(){
     const[barOpen,setBarOpen] = useState(false)
 
