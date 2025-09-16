@@ -18,8 +18,6 @@ import { GiMorgueFeet } from "react-icons/gi";
 
 
 
-
-
 function NavSection(){
     const[barOpen,setBarOpen] = useState(false)
 

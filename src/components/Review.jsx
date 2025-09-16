@@ -87,7 +87,7 @@ const Review = () => {
         {/**Review header */}
         <div className="text-center md:text-left space-y-4 p-6 max-w-[600px] mx-auto mb-6">
          
-          <h2 className="text-3xl font-bold mb-4 text-teal-500 text-center">Review</h2>
+          <h2 className="text-3xl font-bold mb-4 text-blue-700 text-center">Review</h2>
           <p className="text-3xl font-semibold text-center">What our customers say</p>
         </div>
         {/**Review card */}
@@ -96,7 +96,7 @@ const Review = () => {
             {ReviewData.map((item) => {
               return (
                 <div key={item.id}>
-                  <div className="flex flex-col gap-4 p-6 shadow-md mx-4 rounded-xl bg-teal-50">
+                  <div className="flex flex-col gap-4 p-6 shadow-md mx-4 rounded-xl bg-blue-100">
                     {/** upper srction*/}
                     <div className="flex  justify-start items-center gap-5">
                       <img
