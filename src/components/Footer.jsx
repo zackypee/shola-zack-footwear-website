@@ -31,7 +31,7 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer className="bg-gray-800 text-white shadow-xl mx-4">
+    <footer className="bg-gray-800 text-white shadow-xl ">
       {/* Newsletter Section (Moved up for better flow, full-width and responsive) */}
       <div className="md:flex md:justify-between md:items-center sm:px-12 px-5 py-2 bg-[#ffffff19]">
         <h1 className="lg:text-3xl text-2xl md:mb-0 mb-2 lg:leading-normal font-semibold md:w-2/5">

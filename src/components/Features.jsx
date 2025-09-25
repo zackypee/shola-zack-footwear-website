@@ -1,6 +1,7 @@
 import React from 'react'
 
 const Features = () => {
+  
   return (
      <section className="container mx-auto p-4 mt-8 mb-12">
       <h2 className="text-3xl text-blue-700 text-center font-bold mb-4 animate-fade-in">Featured Footwear</h2>

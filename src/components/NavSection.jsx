@@ -13,6 +13,8 @@ import About from "../Pages/About";
 import Contact from "../Pages/Contact";
 import LoginPage from "../Pages/LoginPage";
 import Men from "../Pages/Men";
+import Women from "../Pages/Women";
+import Kids from "../Pages/Kids"
 import { GiMorgueFeet } from "react-icons/gi";
 
 
@@ -66,7 +68,7 @@ function NavSection(){
                   <button className="hidden md:flex group relative cursor-pointer ">Categories
                       <div className="absolute top-full items-left right-0 rounded-lg p-3 shadow-md bg-white group-hover:scale-y-0
                            scale-y-0 group-focus:scale-y-100 transition-transform origin-top duration-200 ease-out flex flex-col" >
-                           <a className="active hover:bg-gray-100 hover:w-14 hover:rounded">Men</a>
+                           <a  className="active hover:bg-gray-100 hover:w-14 hover:rounded">Men</a>
                            <a className="active hover:bg-gray-100 hover:w-14 hover:rounded">Women</a>
                            <a className="active hover:bg-gray-100 hover:w-14 hover:rounded">Kids</a>
                      </div>
@@ -79,6 +81,7 @@ function NavSection(){
             {/* Menubar */}
             <div className="flex gap-2 mt-1.5">
                  <div><IoSearchOutline size={20} className="font-bold bg-white w-8 rounded-2xl hidden md:flex " /></div>
+                 
                  <button className="hidden md:flex group relative cursor-pointer "><CiUser size={20} className="font-bold bg-white w-8 rounded-2xl hidden md:flex" /> 
                   <div className="absolute top-full w-24 items-center right-0 rounded-lg p-4 shadow-md bg-white group-hover:scale-y-0
                      scale-y-0 group-focus:scale-y-100 transition-transform origin-top duration-200 ease-out flex flex-col" > 
