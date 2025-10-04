@@ -14,6 +14,7 @@ import About from './Pages/About'
 import Contact from './Pages/Contact'
 import LoginPage from './Pages/LoginPage'
 import SignUp from './Pages/SignUp'
+import Kids from './Pages/Kids'
 
 
 
@@ -37,8 +38,8 @@ function App(){
              } />
         
            <Route path='/men' element ={<Men/>} />
-            <Route path='/women' element ={<Women/>} />
-             <Route path='/kids' element ={<Kids/>} />
+           <Route path='/women' element ={<Women/>} />
+           <Route path='/kids' element ={<Kids/>} />     
            <Route path='/contact' element ={<Contact/>} />
            <Route path='/about' element ={<About/>} />
            <Route path='/login' element ={<LoginPage/>} />
