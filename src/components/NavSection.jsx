@@ -77,7 +77,9 @@ function NavSection(){
 
             {/* Menubar */}
             <div className="flex gap-2 mt-1.5">
-                 <div><IoSearchOutline size={20} className="font-bold bg-white w-8 rounded-2xl hidden md:flex " /></div>
+                 <NavLink to="/search" className="hidden md:flex">
+                   <IoSearchOutline size={20} className="font-bold bg-white w-8 rounded-2xl" />
+                 </NavLink>
                  
                 <button className="hidden md:flex group relative cursor-pointer "><CiUser size={20} className="font-bold bg-white w-8 rounded-2xl hidden md:flex" /> 
                  <div className="absolute top-full w-24 items-center right-0 rounded-lg p-4 shadow-md bg-white group-hover:scale-y-100
@@ -108,7 +110,9 @@ function NavSection(){
                         <LiaTimesSolid onClick={()=> setBarOpen(false)} size={30} className="  cursor-pointer" />
                      </div>
                      <div className="flex content-center gap-6 mr-4">
-                         <IoSearchOutline size={30} className="font-bold" />
+                         <NavLink to="/search" onClick={()=> setBarOpen(false)}>
+                           <IoSearchOutline size={30} className="font-bold" />
+                         </NavLink>
                          <HiOutlineShoppingBag size={30} className="font-bold" />
                       </div>
                   </div>
