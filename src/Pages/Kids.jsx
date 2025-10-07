@@ -13,7 +13,7 @@ const Kids = () => {
   useEffect(() => {
     const fetchShoes = async () => {
       try {
-        const response = await fetch('https://dummyjson.com/products/search?q=children');
+        const response = await fetch('/api/category/kids');
         if (!response.ok) {
           throw new Error('Failed to fetch men\'s shoes');
         }

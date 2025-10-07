@@ -1,11 +1,20 @@
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { useCart } from '../context/CartContext'
 import { useNavigate, Link } from 'react-router-dom'
 import toast from 'react-hot-toast'
+import { useAuth } from '../context/AuthContext'
 
 const Checkout = () => {
   const { items, totals, clearCart } = useCart()
   const navigate = useNavigate()
+  const { currentUser } = useAuth()
+
+  useEffect(() => {
+    if (!currentUser) {
+      toast.error('Please log in to checkout')
+      navigate('/login')
+    }
+  }, [currentUser, navigate])
 
   const [form, setForm] = useState({
     name: '',
@@ -27,7 +36,7 @@ const Checkout = () => {
     setForm((f) => ({ ...f, [name]: value }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     if (!items.length) {
       toast.error('Your cart is empty')
@@ -37,9 +46,23 @@ const Checkout = () => {
       toast.error('Please complete required fields')
       return
     }
-    toast.success('Order placed!')
-    clearCart()
-    navigate('/')
+    try {
+      const res = await fetch('/api/orders', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          customer: form,
+          items,
+          totals,
+        })
+      })
+      if (!res.ok) throw new Error('Failed to place order')
+      toast.success('Order placed!')
+      clearCart()
+      navigate('/')
+    } catch (err) {
+      toast.error('Could not place order')
+    }
   }
 
   return (

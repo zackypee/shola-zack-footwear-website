@@ -6,15 +6,18 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { BrowserRouter } from "react-router-dom";
 import { CartProvider } from './context/CartContext'
+import { AuthProvider } from './context/AuthContext'
 import { Toaster } from 'react-hot-toast'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
      <BrowserRouter>
-       <CartProvider>
-         <App />
-         <Toaster position="top-center" toastOptions={{ duration: 1200 }} />
-       </CartProvider>
+       <AuthProvider>
+         <CartProvider>
+           <App />
+           <Toaster position="top-center" toastOptions={{ duration: 1200 }} />
+         </CartProvider>
+       </AuthProvider>
       </BrowserRouter>
   </StrictMode>,
 )

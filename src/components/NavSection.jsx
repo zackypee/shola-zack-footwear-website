@@ -8,6 +8,8 @@ import { CiUser } from "react-icons/ci";
 import { NavLink, useLocation } from "react-router-dom";
 import { GiMorgueFeet } from "react-icons/gi";
 import { useCart } from "../context/CartContext";
+import { useAuth } from "../context/AuthContext";
+import toast from 'react-hot-toast';
 
 
 
@@ -16,6 +18,7 @@ function NavSection(){
     const[barOpen,setBarOpen] = useState(false)
     const location = useLocation()
     const { totals } = useCart()
+    const { currentUser, logout } = useAuth()
 
     // Close sidebar on route change
     useEffect(()=>{
@@ -83,14 +86,23 @@ function NavSection(){
                    <IoSearchOutline size={20} className="font-bold bg-white w-8 rounded-2xl" />
                  </NavLink>
                  
-                <button className="hidden md:flex group relative cursor-pointer "><CiUser size={20} className="font-bold bg-white w-8 rounded-2xl hidden md:flex" /> 
-                 <div className="absolute top-full w-24 items-center right-0 rounded-lg p-4 shadow-md bg-white group-hover:scale-y-100
-                    scale-y-0 group-focus:scale-y-100 transition-transform origin-top duration-200 ease-out flex flex-col" > 
-                    <NavLink to="/login" className="active hover:bg-gray-100  hover:rounded hover:w-auto">Log In</NavLink>
-                    <NavLink to="/signup" className="active hover:bg-gray-100 hover:w-24">Sign Up</NavLink>
+               <button className="hidden md:flex group relative cursor-pointer ">
+                 <CiUser size={20} className="font-bold bg-white w-8 rounded-2xl hidden md:flex" /> 
+                 <div className="absolute top-full min-w-32 items-center right-0 rounded-lg p-4 shadow-md bg-white group-hover:scale-y-100
+                    scale-y-0 group-focus:scale-y-100 transition-transform origin-top duration-200 ease-out flex flex-col text-sm" > 
+                   {currentUser ? (
+                     <>
+                       <div className="mb-2 text-gray-700">Hi, {currentUser.name.split(' ')[0]}</div>
+                       <button onClick={()=>{ logout(); toast.success('Logged out') }} className="text-red-600 hover:bg-gray-100 w-full text-left px-2 py-1 rounded">Logout</button>
+                     </>
+                   ) : (
+                     <>
+                       <NavLink to="/login" className="active hover:bg-gray-100  hover:rounded hover:w-auto w-full text-left px-2 py-1 rounded">Log In</NavLink>
+                       <NavLink to="/signup" className="active hover:bg-gray-100 hover:w-24 w-full text-left px-2 py-1 rounded">Sign Up</NavLink>
+                     </>
+                   )}
                  </div>
-
-                </button>
+               </button>
                 <NavLink to="/cart" aria-label="View cart" className="hidden md:flex relative">
                   <HiOutlineShoppingBag size={20} className="bg-white w-8 rounded-2xl" />
                   {totals.count > 0 && (
@@ -144,14 +156,18 @@ function NavSection(){
                         </NavLink>
                     ))
                     }
-                     
+                    {currentUser ? (
+                      <button onClick={()=> { logout(); setBarOpen(false); toast.success('Logged out') }} className="h-14 shadow-sm px-4 text-lg font-bold text-left">Logout</button>
+                    ) : (
+                      <>
+                        <NavLink onClick={()=> setBarOpen(false)} to="/login" className="h-14 shadow-sm px-4 text-lg font-bold content-center">Log In</NavLink>
+                        <NavLink onClick={()=> setBarOpen(false)} to="/signup" className="h-14 shadow-sm px-4 text-lg font-bold content-center">Sign Up</NavLink>
+                      </>
+                    )}
                    </div>
                   </div>   
              </div>
-             <div className="mb-14 flex flex-col items-center">
-                <NavLink onClick={()=> setBarOpen(false)} to="/signup" className="w-sm h-12 text-center font-bold border mx-4  content-center">Sign Up</NavLink>
-                <NavLink onClick={()=> setBarOpen(false)} to="/login" className="w-sm h-12 text-center text-white bg-black mt-4 mx-4 content-center">Log In</NavLink>
-             </div>
+             <div className="mb-14 flex flex-col items-center"></div>
              </section>
             </div>
         </div>
@@ -172,4 +188,5 @@ function NavSection(){
 
 
 
+export default NavSection;
 export default NavSection;

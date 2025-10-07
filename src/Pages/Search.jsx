@@ -19,7 +19,7 @@ const Search = () => {
     setLoading(true)
     setError('')
     try {
-      const res = await fetch(`https://dummyjson.com/products/search?q=${encodeURIComponent(q)}`)
+      const res = await fetch(`/api/search?q=${encodeURIComponent(q)}`)
       if (!res.ok) throw new Error('Search failed')
       const data = await res.json()
       setResults(data.products || [])

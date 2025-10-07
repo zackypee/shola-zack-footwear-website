@@ -4,10 +4,15 @@ import { SiFacebook } from "react-icons/si";
 import { GiMorgueFeet } from "react-icons/gi";
 import {AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
+import { useAuth } from '../context/AuthContext';
+import toast from 'react-hot-toast';
 
 function SignUp(){
 
     const [showPassword, setShowPassword] = useState(false);
+    const { register } = useAuth();
+    const [form, setForm] = useState({ name: '', email: '', password: '', confirmPassword: '' })
+    const onChange = (e) => setForm({ ...form, [e.target.id]: e.target.value })
     
     return(
        <div className='bg-white '>
@@ -23,17 +28,22 @@ function SignUp(){
                     <h1 className='font-bold text-4xl mt-4'>Welcome Back</h1>
                     <p className='text-sm text-gray-400 mt-2'>Please login to your account</p>
                 </div>
-                <form action="" className='mt-4'>
+                <form onSubmit={(e)=>{
+                    e.preventDefault();
+                    if (form.password !== form.confirmPassword) { toast.error('Passwords do not match'); return; }
+                    try { register({ name: form.name, email: form.email, password: form.password }); toast.success('Account created'); }
+                    catch (err) { toast.error(err.message || 'Could not sign up'); }
+                }} className='mt-4'>
                     <div className='flex flex-col gap-4  '>
-                        <input id="name" type="text" name="name" required autoComplete="name" placeholder='Full Name' className='placeholder-gray-500 placeholder-opacity-75 h-12 w-[400px] bg-gray-200
+                        <input id="name" value={form.name} onChange={onChange} type="text" name="name" required autoComplete="name" placeholder='Full Name' className='placeholder-gray-500 placeholder-opacity-75 h-12 w-[400px] bg-gray-200
                         rounded-sm px-3 py-1.5 sm:text-sm/6 outline-1 -outline-offset-1 outline-white/10
                         focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500' />
                        
-                        <input id="email" type="email" name="email" required autoComplete="email" placeholder='Email address' className='placeholder-gray-500 placeholder-opacity-75 h-12 w-[400px] bg-gray-200
+                        <input id="email" value={form.email} onChange={onChange} type="email" name="email" required autoComplete="email" placeholder='Email address' className='placeholder-gray-500 placeholder-opacity-75 h-12 w-[400px] bg-gray-200
                         rounded-sm px-3 py-1.5 sm:text-sm/6 outline-1 -outline-offset-1 outline-white/10
                         focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500' />
                          <div className='relative '>
-                          <input id="password" 
+                          <input id="password" value={form.password} onChange={onChange}
                           type={showPassword ? "text" : "password"} name="password" 
                          required autoComplete="current-password" placeholder='Password' className='placeholder-gray-500 placeholder-opacity-75 h-12 w-[400px] bg-gray-200
                          rounded-sm px-3 py-1.5 sm:text-sm/6 outline-1 -outline-offset-1 outline-white/10
@@ -44,7 +54,7 @@ function SignUp(){
                             </button>
                        </div>
                         <div className='relative '>
-                          <input id="confirmPassword" 
+                          <input id="confirmPassword" value={form.confirmPassword} onChange={onChange}
                           type={showPassword ? "text" : "password"} name="confirmPassword" 
                          required autoComplete="current-password" placeholder='Confirm Password' className='placeholder-gray-500 placeholder-opacity-75 h-12 w-[400px] bg-gray-200
                          rounded-sm px-3 py-1.5 sm:text-sm/6 outline-1 -outline-offset-1 outline-white/10
