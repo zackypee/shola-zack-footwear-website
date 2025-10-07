@@ -4,53 +4,66 @@ import Footer from '../components/Footer'
 
 const About = () => {
   return (
-    <section>
-       <div className='aboutus mt-20 mx-4 lg:grid lg:grid-cols-2 gap-5'>
-        <div className=''>
-          <h3 className='underline decoration-2 decoration-blue-500'>Our Story</h3>
-          <p className='text-sm font-bold'><strong>Z&S </strong>Your Vision Our Expertise Your Success Get Notice <span className='text-blue-400'>Lead Domain.</span></p>
-
-          <img className='mb-5' src="/about-us-page.jpg" alt="" />
-          </div>
-          {/**aboutus-content 2 */}
-          <div className='mt-11'>
-            <div className='flex w-50 h-45 lg:w-70 lg:h-50 gap-9 mb-10 ' >
-              <img className='rounded-t-xl sm:w-50 lg:w-70' src="/shoe1.jpg" alt="" />
-            <img className='rounded-t-xl '  src="/shoe2.jpg" alt="" />
-            </div>
-            {/**about us text */}
-            <div>
-              <p className="mb-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error eligendi velit reiciendis nostrum, optio iste libero quaerat assumenda voluptates est corrupti culpa facere aliquid, accusantium officiis placeat. In, sed est.</p>
-{/**like start........................... */}
-              <div className='like flex justify-between'>
-                <div>
-                <h3 className='font-bold text-2xl'>10K+</h3>
-                <p>Qualities </p>
-                </div>
-                <div>
-                <h3 className='font-bold text-2xl'>15K+</h3>
-                <p>Satisfied </p>
-                </div>
-                <div>
-                <h3 className='font-bold text-2xl'>19K+</h3>
-                <p>Light-Weight </p>
-                </div>
-                <div>
-                <h3 className='font-bold text-2xl'>50Y+</h3>
-                <p>Lasting </p>
-                </div>
-                
+    <section className='mt-20'>
+      {/* Hero */}
+      <div className='container mx-auto px-4'>
+        <div className='grid lg:grid-cols-2 gap-8 items-center'>
+          <div>
+            <h1 className='text-3xl md:text-4xl font-bold'>About Z&S Footwear</h1>
+            <p className='mt-3 text-gray-600'>
+              Your vision, our expertise. We design durable, lightweight and stylish footwear
+              so you can look great and feel even better every day.
+            </p>
+            <div className='mt-6 grid grid-cols-2 sm:grid-cols-4 gap-4'>
+              <div className='rounded-xl border p-4 text-center'>
+                <h3 className='text-2xl font-bold'>10K+</h3>
+                <p className='text-xs text-gray-500'>Pairs Crafted</p>
+              </div>
+              <div className='rounded-xl border p-4 text-center'>
+                <h3 className='text-2xl font-bold'>15K+</h3>
+                <p className='text-xs text-gray-500'>Happy Customers</p>
+              </div>
+              <div className='rounded-xl border p-4 text-center'>
+                <h3 className='text-2xl font-bold'>19K+</h3>
+                <p className='text-xs text-gray-500'>Lightweight Steps</p>
+              </div>
+              <div className='rounded-xl border p-4 text-center'>
+                <h3 className='text-2xl font-bold'>50Y+</h3>
+                <p className='text-xs text-gray-500'>Combined Experience</p>
               </div>
             </div>
-            
           </div>
-      {/**about us text edddddddddddddd */}
-       </div>
 
-      <div>
-      <Footer/>
-     </div>
+          <div className='relative'>
+            <div className='absolute -inset-4 md:-inset-6 rounded-3xl bg-blue-200/40'></div>
+            <img className='relative rounded-3xl w-full shadow-md' src="/about-us-page.jpg" alt="Workers crafting premium footwear" />
+          </div>
+        </div>
 
+        {/* Story */}
+        <div className='mt-14 grid lg:grid-cols-2 gap-8 items-start'>
+          <div>
+            <h2 className='text-xl font-bold underline decoration-2 decoration-blue-500'>Our Story</h2>
+            <p className='mt-3 text-gray-700'>
+              Started with a simple idea: make high-quality shoes that last. Today, Z&S blends
+              modern design with reliable materials to deliver footwear that keeps up with
+              your lifestyle.
+            </p>
+            <p className='mt-3 text-gray-700'>
+              From everyday sneakers to performance-ready silhouettes, our collection is built
+              around comfort, durability, and timeless style.
+            </p>
+          </div>
+          <div className='grid grid-cols-2 gap-4'>
+            <img className='rounded-xl w-full h-full object-cover' src="/shoe1.jpg" alt="Men's sneaker in blue" />
+            <img className='rounded-xl w-full h-full object-cover' src="/shoe2.jpg" alt="Women's sneaker in white" />
+          </div>
+        </div>
+      </div>
+
+      <div className='mt-12'>
+        <Footer/>
+      </div>
     </section>
 
   )

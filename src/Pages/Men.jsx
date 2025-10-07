@@ -1,11 +1,15 @@
 // src/components/MenShoes.jsx
 import React, { useState, useEffect } from 'react';
 import Footer from '../components/Footer';
+import { useCart } from '../context/CartContext';
+import toast from 'react-hot-toast';
 
 const Men = () => {
   const [shoes, setShoes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { addToCart } = useCart();
+  const [justAddedId, setJustAddedId] = useState(null);
 
   useEffect(() => {
     const fetchShoes = async () => {
@@ -46,7 +50,19 @@ const Men = () => {
                 <h3 className="text-lg font-semibold text-gray-800 truncate">{shoe.title}</h3>
                 {/**buy button */}
                 <div className='flex justify-between font-bold'>
-                 <p className="text-gray-600 mt-1">&#8358;{shoe.price} </p> <a className='text-blue-700 cursor-pointer' href=''>Buy</a>
+                 <p className="text-gray-600 mt-1">&#8358;{shoe.price} </p>
+                 <button
+                   className={`px-3 py-1 rounded text-white cursor-pointer active:scale-95 transition ${justAddedId===shoe.id ? 'bg-green-600' : 'bg-blue-600'}`}
+                   disabled={justAddedId===shoe.id}
+                   onClick={() => {
+                     addToCart(shoe);
+                     toast.success('Added to cart');
+                     setJustAddedId(shoe.id);
+                     setTimeout(() => setJustAddedId(null), 1000);
+                   }}
+                 >
+                   {justAddedId===shoe.id ? 'Added!' : 'Add'}
+                 </button>
                 </div>
               </div>
             </div>

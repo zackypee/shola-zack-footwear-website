@@ -80,8 +80,10 @@ function NavSection(){
                     <NavLink to="/signup" className="active hover:bg-gray-100 hover:w-24">Sign Up</NavLink>
                  </div>
 
-                 </button>
-                 <div><HiOutlineShoppingBag size={20} className="bg-white w-8 rounded-2xl hidden md:flex" /></div>
+                </button>
+                <NavLink to="/cart" aria-label="View cart" className="hidden md:flex">
+                  <HiOutlineShoppingBag size={20} className="bg-white w-8 rounded-2xl" />
+                </NavLink>
                  <div>< IoMdMenu onClick={()=> setBarOpen(true)} size={30} className="cursor-pointer md:hidden"/></div>   
             </div>
 

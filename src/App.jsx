@@ -15,6 +15,8 @@ import Contact from './Pages/Contact'
 import LoginPage from './Pages/LoginPage'
 import SignUp from './Pages/SignUp'
 import Kids from './Pages/Kids'
+import Cart from './Pages/Cart'
+import Checkout from './Pages/Checkout'
 
 
 
@@ -46,6 +48,10 @@ function App(){
            <Route path='/signup' element ={<SignUp/>} />
 
             </Routes>
+           <Routes>
+             <Route path='/cart' element={<Cart/>} />
+             <Route path='/checkout' element={<Checkout/>} />
+           </Routes>
         
         
         </>
