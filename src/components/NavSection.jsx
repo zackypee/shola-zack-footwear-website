@@ -68,9 +68,9 @@ function NavSection(){
                   <button className="hidden md:flex group relative cursor-pointer ">Categories
                       <div className="absolute top-full items-left right-0 rounded-lg p-3 shadow-md bg-white group-hover:scale-y-0
                            scale-y-0 group-focus:scale-y-100 transition-transform origin-top duration-200 ease-out flex flex-col" >
-                           <a  className="active hover:bg-gray-100 hover:w-14 hover:rounded">Men</a>
-                           <a className="active hover:bg-gray-100 hover:w-14 hover:rounded">Women</a>
-                           <a className="active hover:bg-gray-100 hover:w-14 hover:rounded">Kids</a>
+                           <NavLink to='/men' ><a  className="active hover:bg-gray-100 hover:w-14 hover:rounded">Men</a></NavLink>
+                           <NavLink to='/women'><a className="active hover:bg-gray-100 hover:w-14 hover:rounded">Women</a></NavLink>
+                           <NavLink to='/kids'><a className="active hover:bg-gray-100 hover:w-14 hover:rounded">Kids</a></NavLink>
                      </div>
                   </button>  
               </div>
