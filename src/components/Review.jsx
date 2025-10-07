@@ -83,7 +83,7 @@ const Review = () => {
 
   return (
     <div className="py-14 mb-10">
-      <div className="container px-4 mx=auto">
+      <div className="container px-4 mx-auto">
         {/**Review header */}
         <div className="text-center md:text-left space-y-4 p-6 max-w-[600px] mx-auto mb-6">
          
@@ -97,7 +97,7 @@ const Review = () => {
               return (
                 <div key={item.id}>
                   <div className="flex flex-col gap-4 p-6 shadow-md mx-4 rounded-xl bg-blue-100">
-                    {/** upper srction*/}
+                    {/** upper section*/}
                     <div className="flex  justify-start items-center gap-5">
                       <img
                         src={item.img}

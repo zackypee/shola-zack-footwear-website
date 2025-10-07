@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { IoMdMenu } from "react-icons/io";
 import { LiaTimesSolid } from "react-icons/lia";
 import { IoSearchOutline } from "react-icons/io5";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { CiUser } from "react-icons/ci";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { GiMorgueFeet } from "react-icons/gi";
 
 
@@ -13,6 +13,12 @@ import { GiMorgueFeet } from "react-icons/gi";
 
 function NavSection(){
     const[barOpen,setBarOpen] = useState(false)
+    const location = useLocation()
+
+    // Close sidebar on route change
+    useEffect(()=>{
+        setBarOpen(false)
+    },[location.pathname])
 
     const navLinks = [
         {label:"Home",link: "/" },
@@ -90,10 +96,10 @@ function NavSection(){
 
             {/* Side bar */}
            
-          <div className={`h-screen w-screen fixed bg-black/50 top-0 right-0 md:hidden flex transition-all duration-300 ease-in
+          <div onClick={()=> setBarOpen(false)} className={`h-screen w-screen fixed bg-black/50 top-0 right-0 md:hidden flex transition-all duration-300 ease-in
              ${barOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}>
 
-             <section className={`flex h-screen w-screen text-black font-bold bg-white  flex-col transform transition-transform duration-300 ease-in-out justify-between ${
+             <section onClick={(e)=> e.stopPropagation()} className={`flex h-screen w-screen text-black font-bold bg-white  flex-col transform transition-transform duration-300 ease-in-out justify-between ${
                 barOpen ? "translate-x-0": "translate-x-full"}`}>
              {/* side bar content */}
                <div className="flex flex-col gap-3 mt-4">
@@ -112,6 +118,7 @@ function NavSection(){
                         <NavLink
                         key={i}
                         to={l.link}
+                        onClick={()=> setBarOpen(false)}
                         className="h-14 shadow-sm px-4 text-lg font-bold content-center" >
                             {l.label}
                         </NavLink>
@@ -122,8 +129,8 @@ function NavSection(){
                   </div>   
              </div>
              <div className="mb-14 flex flex-col items-center">
-                 <NavLink to="/signup" className="w-sm h-12 text-center font-bold border mx-4  content-center">Sign Up</NavLink>
-                 <NavLink to="/login" className="w-sm h-12 text-center text-white bg-black mt-4 mx-4 content-center">Log In</NavLink>
+                <NavLink onClick={()=> setBarOpen(false)} to="/signup" className="w-sm h-12 text-center font-bold border mx-4  content-center">Sign Up</NavLink>
+                <NavLink onClick={()=> setBarOpen(false)} to="/login" className="w-sm h-12 text-center text-white bg-black mt-4 mx-4 content-center">Log In</NavLink>
              </div>
              </section>
             </div>
