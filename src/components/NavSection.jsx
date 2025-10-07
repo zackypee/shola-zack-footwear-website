@@ -7,6 +7,7 @@ import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { CiUser } from "react-icons/ci";
 import { NavLink, useLocation } from "react-router-dom";
 import { GiMorgueFeet } from "react-icons/gi";
+import { useCart } from "../context/CartContext";
 
 
 
@@ -14,6 +15,7 @@ import { GiMorgueFeet } from "react-icons/gi";
 function NavSection(){
     const[barOpen,setBarOpen] = useState(false)
     const location = useLocation()
+    const { totals } = useCart()
 
     // Close sidebar on route change
     useEffect(()=>{
@@ -89,8 +91,13 @@ function NavSection(){
                  </div>
 
                 </button>
-                <NavLink to="/cart" aria-label="View cart" className="hidden md:flex">
+                <NavLink to="/cart" aria-label="View cart" className="hidden md:flex relative">
                   <HiOutlineShoppingBag size={20} className="bg-white w-8 rounded-2xl" />
+                  {totals.count > 0 && (
+                    <span className="absolute -top-1 -right-1 min-w-4 h-4 px-1 rounded-full bg-red-600 text-white text-[10px] leading-4 text-center">
+                      {totals.count}
+                    </span>
+                  )}
                 </NavLink>
                  <div>< IoMdMenu onClick={()=> setBarOpen(true)} size={30} className="cursor-pointer md:hidden"/></div>   
             </div>
@@ -113,7 +120,16 @@ function NavSection(){
                          <NavLink to="/search" onClick={()=> setBarOpen(false)}>
                            <IoSearchOutline size={30} className="font-bold" />
                          </NavLink>
-                         <HiOutlineShoppingBag size={30} className="font-bold" />
+                         <div className="relative">
+                           <NavLink to="/cart" onClick={()=> setBarOpen(false)}>
+                             <HiOutlineShoppingBag size={30} className="font-bold" />
+                           </NavLink>
+                           {totals.count > 0 && (
+                             <span className="absolute -top-1 -right-1 min-w-4 h-4 px-1 rounded-full bg-red-600 text-white text-[10px] leading-4 text-center">
+                               {totals.count}
+                             </span>
+                           )}
+                         </div>
                       </div>
                   </div>
                   <div className="flex flex-col gap-3 mt-2">
