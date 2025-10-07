@@ -9,7 +9,7 @@ const AboutUs = () => {
             <p>Z&S footwear Lorem, ipsum.lorem5 Lorem ipsum dolor sit  consectetur.lorem Lorem ipsum dolor sit  consectetur, add pricing elite.</p>
             </div>
             <div className='w-1/2 relative'>
-            <img src="/public/shoe6.jpg" className='w-full relative z-10' alt="" />
+            <img src="/shoe6.jpg" className='w-full relative z-10' alt="" />
             <div className='bg-blue-400 h-full w-full absolute top-6 -left-6'></div>
             </div>
         </div>

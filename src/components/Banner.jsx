@@ -25,7 +25,7 @@ function Banner() {
     <div className='w-screen'>
       <div
         style={{ backgroundImage: `url(${newArrival[currentState].url})` }}
-        className='relative w-auto h-[500px] bg-cover bg-center mx-aut rounded transition-all duration-700 mx-4'
+        className='relative w-auto h-[500px] bg-cover bg-center mx-auto rounded transition-all duration-700 mx-4'
       >
         {/* Overlay */}
         <div className="absolute inset-0 bg-black/40"></div>

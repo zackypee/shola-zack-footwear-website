@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import { IoMdCart } from "react-icons/io";
 import { FcGoogle } from "react-icons/fc";
 import { SiFacebook } from "react-icons/si";
 import { GiMorgueFeet } from "react-icons/gi";
 import {AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import SignUp from './SignUp';
 import { NavLink } from "react-router-dom";
 
 function LoginPage(){

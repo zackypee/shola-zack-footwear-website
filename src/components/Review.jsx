@@ -22,7 +22,7 @@ const ReviewData = [
     id: 3,
     name: "Alice Johnson",
     review: "Amazing selection and fast shipping.",
-    img: "/shoe3.jpg",
+    img: "/shoe5.jpg",
     rating: 4,
     delay: 0.8,
   },
@@ -31,7 +31,7 @@ const ReviewData = [
 const Review = () => {
   const setting = {
     dots: true,
-    arrow: false, //hide nxt arrow
+    arrows: false, // hide next/prev arrows
     infinite: true, //loop
     speed: 500,
     slidesToShow: 3,
@@ -101,7 +101,7 @@ const Review = () => {
                     <div className="flex  justify-start items-center gap-5">
                       <img
                         src={item.img}
-                        alt="{item.name}"
+                        alt={item.name}
                         className="w-16 h-16 rounded-full object-cover border-2 border-gray-400"
                       />
                       <div>

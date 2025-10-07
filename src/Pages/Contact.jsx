@@ -18,9 +18,9 @@ const Contact = () => {
          </div>
 
          <form action="" className='flex flex-col'>
-          <label htmlFor="" className='flex flex-col text-sm'>Full Name
+          <label htmlFor="name" className='flex flex-col text-sm'>Full Name
              <div className='relative'>
-               <input id="name" type="name" name="name"  placeholder='Enter your full name..' className='placeholder-gray-500 placeholder:text-xs placeholder-opacity-75 h-8 w-[400px] border
+              <input id="name" type="text" name="name"  placeholder='Enter your full name..' className='placeholder-gray-500 placeholder:text-xs placeholder-opacity-75 h-8 w-[400px] border
               border-gray-300 rounded-2xl px-6 py-1.5 sm:text-sm/6 outline-1 -outline-offset-1 outline-white/10
                 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500' />
                   
@@ -29,7 +29,7 @@ const Contact = () => {
              </div>
           </label>
           
-          <label htmlFor="" className='flex flex-col text-sm'> Email Address
+          <label htmlFor="email" className='flex flex-col text-sm'> Email Address
              <div className='relative'>
               <input id="email" type="email" name="email" required autoComplete="email" placeholder='Enter your email address..' className='placeholder-gray-500 placeholder:text-xs placeholder-opacity-75 h-8 w-[400px] border
               border-gray-300 rounded-2xl px-6 py-1.5 sm:text-sm/6 outline-1 -outline-offset-1 outline-white/10
@@ -37,20 +37,20 @@ const Contact = () => {
               <button className='absolute inset-y-0 left-2'> <MdOutlineEmail size={15} /></button>
              </div>
           </label>
-          <label htmlFor=" "className='flex flex-col text-sm'>
+          <label htmlFor="number" className='flex flex-col text-sm'>
             Phone Number
-            <input id="number" type="tel" name="phonr"  placeholder='' className='placeholder-gray-500 placeholder:text-xs placeholder-opacity-75 h-8 w-[400px] border
+            <input id="number" type="tel" name="phone"  placeholder='' className='placeholder-gray-500 placeholder:text-xs placeholder-opacity-75 h-8 w-[400px] border
               border-gray-300 rounded-2xl px-4 py-1.5 sm:text-sm/6 outline-1 -outline-offset-1 outline-white/10
               focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500' />
           </label>
 
-          <label htmlFor="" className='flex flex-col text-sm'>
+          <label htmlFor="message" className='flex flex-col text-sm'>
             Message 
-            <textarea name="" id="" placeholder='Enter your main text here..' className='w-[400px] h-[150px] border rounded-2xl px-4  
+            <textarea name="message" id="message" placeholder='Enter your main text here..' className='w-[400px] h-[150px] border rounded-2xl px-4  
             py-1.5 border-gray-400 outline-1 -outline-offset-1  outline-white/10 focus:outline-indigo-500'></textarea>
           </label>
           <p className='text-sm'>
-            <input type="checkbox" name="" id="" /> I hereby agree to Privacy Policy terms
+            <input type="checkbox" name="terms" id="terms" /> I hereby agree to Privacy Policy terms
           </p>
          </form>
          <div><button className='w-[400px] h-8 bg-blue-600 text-white text-xs rounded-2xl'>Submit Form</button></div>

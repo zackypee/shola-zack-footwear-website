@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { IoMdCart } from "react-icons/io";
 import { FcGoogle } from "react-icons/fc";
 import { SiFacebook } from "react-icons/si";
 import { GiMorgueFeet } from "react-icons/gi";
@@ -26,14 +25,14 @@ function SignUp(){
                 </div>
                 <form action="" className='mt-4'>
                     <div className='flex flex-col gap-4  '>
-                        <input id="name" type="text" name="text" required autoComplete="email" placeholder='Full Name' className='placeholder-gray-500 placeholder-opacity-75 h-12 w-[400px] bg-gray-200
+                        <input id="name" type="text" name="name" required autoComplete="name" placeholder='Full Name' className='placeholder-gray-500 placeholder-opacity-75 h-12 w-[400px] bg-gray-200
                         rounded-sm px-3 py-1.5 sm:text-sm/6 outline-1 -outline-offset-1 outline-white/10
                         focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500' />
                        
                         <input id="email" type="email" name="email" required autoComplete="email" placeholder='Email address' className='placeholder-gray-500 placeholder-opacity-75 h-12 w-[400px] bg-gray-200
                         rounded-sm px-3 py-1.5 sm:text-sm/6 outline-1 -outline-offset-1 outline-white/10
                         focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500' />
-                       <div className='relative '>
+                         <div className='relative '>
                           <input id="password" 
                           type={showPassword ? "text" : "password"} name="password" 
                          required autoComplete="current-password" placeholder='Password' className='placeholder-gray-500 placeholder-opacity-75 h-12 w-[400px] bg-gray-200
@@ -44,9 +43,9 @@ function SignUp(){
                              {showPassword ? < AiOutlineEye className='text-gray-400' size={20} /> : <AiOutlineEyeInvisible className='text-gray-400' size={20} />}
                             </button>
                        </div>
-                         <div className='relative '>
-                          <input id="password" 
-                          type={showPassword ? "text" : "password"} name="password" 
+                        <div className='relative '>
+                          <input id="confirmPassword" 
+                          type={showPassword ? "text" : "password"} name="confirmPassword" 
                          required autoComplete="current-password" placeholder='Confirm Password' className='placeholder-gray-500 placeholder-opacity-75 h-12 w-[400px] bg-gray-200
                          rounded-sm px-3 py-1.5 sm:text-sm/6 outline-1 -outline-offset-1 outline-white/10
                          focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500' />

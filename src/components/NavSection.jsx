@@ -1,7 +1,4 @@
 import React from "react";
-import { CiSearch } from "react-icons/ci";
-import { FaShoppingCart } from "react-icons/fa";
-import { GiShoppingCart } from "react-icons/gi";
 import { useState } from "react";
 import { IoMdMenu } from "react-icons/io";
 import { LiaTimesSolid } from "react-icons/lia";
@@ -9,12 +6,6 @@ import { IoSearchOutline } from "react-icons/io5";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { CiUser } from "react-icons/ci";
 import { NavLink } from "react-router-dom";
-import About from "../Pages/About";
-import Contact from "../Pages/Contact";
-import LoginPage from "../Pages/LoginPage";
-import Men from "../Pages/Men";
-import Women from "../Pages/Women";
-import Kids from "../Pages/Kids"
 import { GiMorgueFeet } from "react-icons/gi";
 
 
@@ -65,14 +56,14 @@ function NavSection(){
                  
                 
                  {/* drop down */}
-                  <button className="hidden md:flex group relative cursor-pointer ">Categories
-                      <div className="absolute top-full items-left right-0 rounded-lg p-3 shadow-md bg-white group-hover:scale-y-0
-                           scale-y-0 group-focus:scale-y-100 transition-transform origin-top duration-200 ease-out flex flex-col" >
-                           <NavLink to='/men' ><a  className="active hover:bg-gray-100 hover:w-14 hover:rounded">Men</a></NavLink>
-                           <NavLink to='/women'><a className="active hover:bg-gray-100 hover:w-14 hover:rounded">Women</a></NavLink>
-                           <NavLink to='/kids'><a className="active hover:bg-gray-100 hover:w-14 hover:rounded">Kids</a></NavLink>
-                     </div>
-                  </button>  
+                 <button className="hidden md:flex group relative cursor-pointer ">Categories
+                     <div className="absolute top-full items-left right-0 rounded-lg p-3 shadow-md bg-white group-hover:scale-y-100
+                          scale-y-0 group-focus:scale-y-100 transition-transform origin-top duration-200 ease-out flex flex-col" >
+                          <NavLink to='/men' className="active hover:bg-gray-100 hover:w-14 hover:rounded">Men</NavLink>
+                          <NavLink to='/women' className="active hover:bg-gray-100 hover:w-14 hover:rounded">Women</NavLink>
+                          <NavLink to='/kids' className="active hover:bg-gray-100 hover:w-14 hover:rounded">Kids</NavLink>
+                    </div>
+                 </button>  
               </div>
 
 
@@ -82,12 +73,12 @@ function NavSection(){
             <div className="flex gap-2 mt-1.5">
                  <div><IoSearchOutline size={20} className="font-bold bg-white w-8 rounded-2xl hidden md:flex " /></div>
                  
-                 <button className="hidden md:flex group relative cursor-pointer "><CiUser size={20} className="font-bold bg-white w-8 rounded-2xl hidden md:flex" /> 
-                  <div className="absolute top-full w-24 items-center right-0 rounded-lg p-4 shadow-md bg-white group-hover:scale-y-0
-                     scale-y-0 group-focus:scale-y-100 transition-transform origin-top duration-200 ease-out flex flex-col" > 
-                     <NavLink to="/login"> <a className="active hover:bg-gray-100  hover:rounded hover:w-auto">Log In</a></NavLink>
-                     <NavLink to="/signup"><a className="active hover:bg-gray-100 hover:w-24">Sign Up</a></NavLink>
-                  </div>
+                <button className="hidden md:flex group relative cursor-pointer "><CiUser size={20} className="font-bold bg-white w-8 rounded-2xl hidden md:flex" /> 
+                 <div className="absolute top-full w-24 items-center right-0 rounded-lg p-4 shadow-md bg-white group-hover:scale-y-100
+                    scale-y-0 group-focus:scale-y-100 transition-transform origin-top duration-200 ease-out flex flex-col" > 
+                    <NavLink to="/login" className="active hover:bg-gray-100  hover:rounded hover:w-auto">Log In</NavLink>
+                    <NavLink to="/signup" className="active hover:bg-gray-100 hover:w-24">Sign Up</NavLink>
+                 </div>
 
                  </button>
                  <div><HiOutlineShoppingBag size={20} className="bg-white w-8 rounded-2xl hidden md:flex" /></div>
@@ -106,7 +97,7 @@ function NavSection(){
                <div className="flex flex-col gap-3 mt-4">
                   <div className="flex items-center justify-between content-center  h-14  shadow-md">
                      <div className="content-center mx-4">
-                         < LiaTimesSolid onClick={()=> setBarOpen(false)} size={30} className="  cursor-pointer" />
+                        <LiaTimesSolid onClick={()=> setBarOpen(false)} size={30} className="  cursor-pointer" />
                      </div>
                      <div className="flex content-center gap-6 mr-4">
                          <IoSearchOutline size={30} className="font-bold" />
