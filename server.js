@@ -3,6 +3,7 @@ import cors from 'cors'
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import fetch from 'node-fetch'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -58,7 +59,7 @@ app.get('/api/category/:slug', async (req, res) => {
     let url = ''
     if (slug === 'mens-shoes') url = 'https://dummyjson.com/products/category/mens-shoes'
     else if (slug === 'womens-shoes') url = 'https://dummyjson.com/products/category/womens-shoes'
-    else if (slug === 'kids') url = 'https://dummyjson.com/products/search?q=children'
+    else if (slug === 'kids') url = 'https://dummyjson.com/products?limit=20'
     else url = `https://dummyjson.com/products/search?q=${encodeURIComponent(slug)}`
 
     const r = await fetch(url)
@@ -78,7 +79,7 @@ app.post('/api/orders', (req, res) => {
   res.status(201).json(order)
 })
 
-const PORT = process.env.PORT || 5174
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => console.log(`API listening on http://localhost:${PORT}`))
 
 
