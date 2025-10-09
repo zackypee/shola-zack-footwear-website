@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Auth Test</title>
+</head>
+<body>
+    <h1>Authentication Test</h1>
+    <div id="output"></div>
+    
+    <script>
+        // Test localStorage functionality
+        function testAuth() {
+            const output = document.getElementById('output');
+            
+            // Check if localStorage is available
+            if (typeof(Storage) !== "undefined") {
+                output.innerHTML += '<p>✅ localStorage is available</p>';
+                
+                // Test storing and retrieving data
+                const testUser = {
+                    id: '123',
+                    name: 'Test User',
+                    email: 'test@example.com'
+                };
+                
+                localStorage.setItem('test_user', JSON.stringify(testUser));
+                const retrieved = JSON.parse(localStorage.getItem('test_user'));
+                
+                if (retrieved && retrieved.name === 'Test User') {
+                    output.innerHTML += '<p>✅ localStorage read/write works</p>';
+                } else {
+                    output.innerHTML += '<p>❌ localStorage read/write failed</p>';
+                }
+                
+                // Check existing auth data
+                const users = JSON.parse(localStorage.getItem('users_v1') || '[]');
+                const currentUser = JSON.parse(localStorage.getItem('current_user_v1') || 'null');
+                
+                output.innerHTML += `<p>📊 Users in storage: ${users.length}</p>`;
+                output.innerHTML += `<p>👤 Current user: ${currentUser ? currentUser.name : 'None'}</p>';
+                
+                // Clean up test data
+                localStorage.removeItem('test_user');
+                
+            } else {
+                output.innerHTML += '<p>❌ localStorage is not available</p>';
+            }
+        }
+        
+        // Run test when page loads
+        testAuth();
+    </script>
+</body>
+</html>

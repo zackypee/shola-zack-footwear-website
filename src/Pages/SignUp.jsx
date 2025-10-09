@@ -3,15 +3,18 @@ import { FcGoogle } from "react-icons/fc";
 import { SiFacebook } from "react-icons/si";
 import { GiMorgueFeet } from "react-icons/gi";
 import {AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from '../context/AuthContext';
 import toast from 'react-hot-toast';
 
 function SignUp(){
 
     const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const { register } = useAuth();
+    const navigate = useNavigate();
     const [form, setForm] = useState({ name: '', email: '', password: '', confirmPassword: '' })
+    const [loading, setLoading] = useState(false);
     const onChange = (e) => setForm({ ...form, [e.target.id]: e.target.value })
     
     return(
@@ -25,14 +28,24 @@ function SignUp(){
                     <p className='font-bold text-2xl'>ZS </p>
                 </div>
                 <div className='text-center'>
-                    <h1 className='font-bold text-4xl mt-4'>Welcome Back</h1>
-                    <p className='text-sm text-gray-400 mt-2'>Please login to your account</p>
+                    <h1 className='font-bold text-4xl mt-4'>Create Account</h1>
+                    <p className='text-sm text-gray-400 mt-2'>Sign up to get started</p>
                 </div>
-                <form onSubmit={(e)=>{
+                <form onSubmit={async (e)=>{
                     e.preventDefault();
                     if (form.password !== form.confirmPassword) { toast.error('Passwords do not match'); return; }
-                    try { register({ name: form.name, email: form.email, password: form.password }); toast.success('Account created'); }
+                    if (form.password.length < 6) { toast.error('Password must be at least 6 characters'); return; }
+                    if (!form.email.includes('@')) { toast.error('Please enter a valid email'); return; }
+                    if (!form.name.trim()) { toast.error('Please enter your name'); return; }
+                    
+                    setLoading(true);
+                    try { 
+                        register({ name: form.name, email: form.email, password: form.password }); 
+                        toast.success('Account created successfully!'); 
+                        setTimeout(() => navigate('/'), 1500);
+                    }
                     catch (err) { toast.error(err.message || 'Could not sign up'); }
+                    finally { setLoading(false); }
                 }} className='mt-4'>
                     <div className='flex flex-col gap-4  '>
                         <input id="name" value={form.name} onChange={onChange} type="text" name="name" required autoComplete="name" placeholder='Full Name' className='placeholder-gray-500 placeholder-opacity-75 h-12 w-[400px] bg-gray-200
@@ -53,22 +66,24 @@ function SignUp(){
                              {showPassword ? < AiOutlineEye className='text-gray-400' size={20} /> : <AiOutlineEyeInvisible className='text-gray-400' size={20} />}
                             </button>
                        </div>
-                        <div className='relative '>
+                         <div className='relative '>
                           <input id="confirmPassword" value={form.confirmPassword} onChange={onChange}
-                          type={showPassword ? "text" : "password"} name="confirmPassword" 
-                         required autoComplete="current-password" placeholder='Confirm Password' className='placeholder-gray-500 placeholder-opacity-75 h-12 w-[400px] bg-gray-200
-                         rounded-sm px-3 py-1.5 sm:text-sm/6 outline-1 -outline-offset-1 outline-white/10
-                         focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500' />
-                         <button type='button'
-                             onClick={()=>setShowPassword(!showPassword)} className=' absolute inset-y-0 hover:text-gray-700 right-3 justify-self-end flex items-center '>
-                             {showPassword ? < AiOutlineEye className='text-gray-400' size={20} /> : <AiOutlineEyeInvisible className='text-gray-400' size={20} />}
-                            </button>
-                       </div>
+                          type={showConfirmPassword ? "text" : "password"} name="confirmPassword" 
+                          required autoComplete="new-password" placeholder='Confirm Password' className='placeholder-gray-500 placeholder-opacity-75 h-12 w-[400px] bg-gray-200
+                          rounded-sm px-3 py-1.5 sm:text-sm/6 outline-1 -outline-offset-1 outline-white/10
+                          focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500' />
+                          <button type='button'
+                              onClick={()=>setShowConfirmPassword(!showConfirmPassword)} className=' absolute inset-y-0 hover:text-gray-700 right-3 justify-self-end flex items-center '>
+                              {showConfirmPassword ? < AiOutlineEye className='text-gray-400' size={20} /> : <AiOutlineEyeInvisible className='text-gray-400' size={20} />}
+                             </button>
+                        </div>
                         <p className='text-xs font-medium text-end'>Forgot Password?</p>
                     </div>
                 </form>
                 <div className='mt-8'>
-                    <button className='text-white font-bold  bg-blue-600 w-[400px] rounded-sm h-12'>Sign Up</button>
+                    <button type="submit" disabled={loading} className={`text-white font-bold w-[400px] rounded-sm h-12 ${loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'}`}>
+                        {loading ? 'Creating Account...' : 'Sign Up'}
+                    </button>
                     <div className='flex items-center justify-center gap-1.5 mt-4'>
                         <hr className=' w-20 border-gray-300' />
                         <span className='text-xs text-gray-400'>Or Sign Up With</span>

@@ -3,7 +3,7 @@ import { FcGoogle } from "react-icons/fc";
 import { SiFacebook } from "react-icons/si";
 import { GiMorgueFeet } from "react-icons/gi";
 import {AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from '../context/AuthContext';
 import toast from 'react-hot-toast';
 
@@ -11,7 +11,9 @@ function LoginPage(){
 
     const [showPassword, setShowPassword] = useState(false);
     const { login } = useAuth();
+    const navigate = useNavigate();
     const [form, setForm] = useState({ email: '', password: '' })
+    const [loading, setLoading] = useState(false);
     
     return(
        <div className='bg-white '>
@@ -27,10 +29,19 @@ function LoginPage(){
                     <h1 className='font-bold text-4xl mt-4'>Welcome Back</h1>
                     <p className='text-sm text-gray-400 mt-2'>Please login to your account</p>
                 </div>
-                <form onSubmit={(e)=>{
+                <form onSubmit={async (e)=>{
                     e.preventDefault();
-                    try { login(form); toast.success('Logged in'); }
+                    if (!form.email.trim()) { toast.error('Please enter your email'); return; }
+                    if (!form.password.trim()) { toast.error('Please enter your password'); return; }
+                    
+                    setLoading(true);
+                    try { 
+                        login(form); 
+                        toast.success('Logged in successfully!'); 
+                        setTimeout(() => navigate('/'), 1500);
+                    }
                     catch (err) { toast.error(err.message || 'Invalid email or password'); }
+                    finally { setLoading(false); }
                 }} className='mt-4'>
                     <div className='flex flex-col gap-4  '>
                         <input id="email" value={form.email} onChange={(e)=> setForm({...form, email: e.target.value})} type="email" name="email" required autoComplete="email" placeholder='Email address' className='placeholder-gray-500 placeholder-opacity-75 h-12 w-[400px] bg-gray-200
@@ -51,7 +62,9 @@ function LoginPage(){
                     </div>
                 </form>
                 <div className='mt-8'>
-                    <button className='text-white font-bold  bg-blue-600 w-[400px] rounded-sm h-12'>Login</button>
+                    <button type="submit" disabled={loading} className={`text-white font-bold w-[400px] rounded-sm h-12 ${loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'}`}>
+                        {loading ? 'Logging in...' : 'Login'}
+                    </button>
                     <div className='flex items-center justify-center gap-1.5 mt-4'>
                         <hr className=' w-20 border-gray-300' />
                         <span className='text-xs text-gray-400'>Or Login With</span>
