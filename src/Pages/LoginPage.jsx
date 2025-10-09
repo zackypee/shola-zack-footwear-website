@@ -36,11 +36,16 @@ function LoginPage(){
                     
                     setLoading(true);
                     try { 
+                        console.log('Attempting to login:', { email: form.email });
                         login(form); 
+                        console.log('Login successful');
                         toast.success('Logged in successfully!'); 
                         setTimeout(() => navigate('/'), 1500);
                     }
-                    catch (err) { toast.error(err.message || 'Invalid email or password'); }
+                    catch (err) { 
+                        console.error('Login error:', err);
+                        toast.error(err.message || 'Invalid email or password'); 
+                    }
                     finally { setLoading(false); }
                 }} className='mt-4'>
                     <div className='flex flex-col gap-4  '>
@@ -60,11 +65,12 @@ function LoginPage(){
                        </div>
                         <p className='text-xs font-medium text-end'>Forgot Password?</p>
                     </div>
+                    <div className='mt-8'>
+                        <button type="submit" disabled={loading} className={`text-white font-bold w-[400px] rounded-sm h-12 ${loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'}`}>
+                            {loading ? 'Logging in...' : 'Login'}
+                        </button>
+                    </div>
                 </form>
-                <div className='mt-8'>
-                    <button type="submit" disabled={loading} className={`text-white font-bold w-[400px] rounded-sm h-12 ${loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'}`}>
-                        {loading ? 'Logging in...' : 'Login'}
-                    </button>
                     <div className='flex items-center justify-center gap-1.5 mt-4'>
                         <hr className=' w-20 border-gray-300' />
                         <span className='text-xs text-gray-400'>Or Login With</span>
@@ -82,8 +88,6 @@ function LoginPage(){
 
             </div>
         </div>
-       </div>
-
     )
 }
 

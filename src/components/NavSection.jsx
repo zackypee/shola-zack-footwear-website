@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoMdMenu } from "react-icons/io";
 import { LiaTimesSolid } from "react-icons/lia";
 import { IoSearchOutline } from "react-icons/io5";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { CiUser } from "react-icons/ci";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { GiMorgueFeet } from "react-icons/gi";
 import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
@@ -16,7 +15,10 @@ import toast from 'react-hot-toast';
 
 function NavSection(){
     const[barOpen,setBarOpen] = useState(false)
+    const[searchOpen,setSearchOpen] = useState(false)
+    const[searchQuery,setSearchQuery] = useState('')
     const location = useLocation()
+    const navigate = useNavigate()
     const { totals } = useCart()
     const { currentUser, logout } = useAuth()
 
@@ -24,6 +26,45 @@ function NavSection(){
     useEffect(()=>{
         setBarOpen(false)
     },[location.pathname])
+
+    // Close search when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (searchOpen && !event.target.closest('.search-container')) {
+                setSearchOpen(false)
+                setSearchQuery('')
+            }
+        }
+
+        if (searchOpen) {
+            document.addEventListener('mousedown', handleClickOutside)
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside)
+        }
+    }, [searchOpen])
+
+    // Handle search functionality
+    const handleSearch = (e) => {
+        e.preventDefault()
+        if (searchQuery.trim()) {
+            navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`)
+            setSearchOpen(false)
+            setSearchQuery('')
+        }
+    }
+
+    const toggleSearch = () => {
+        setSearchOpen(!searchOpen)
+        if (!searchOpen) {
+            // Focus on search input when opening
+            setTimeout(() => {
+                const searchInput = document.getElementById('navbar-search')
+                if (searchInput) searchInput.focus()
+            }, 100)
+        }
+    }
 
     const navLinks = [
         {label:"Home",link: "/" },
@@ -80,11 +121,48 @@ function NavSection(){
 
            
 
+            {/* Search Bar - Desktop */}
+            {searchOpen && (
+              <div className="search-container hidden md:flex absolute top-full left-0 right-0 bg-white shadow-lg border-t z-40">
+                <form onSubmit={handleSearch} className="w-full flex items-center p-4">
+                  <div className="flex-1 flex items-center gap-3">
+                    <IoSearchOutline size={20} className="text-gray-400" />
+                    <input
+                      id="navbar-search"
+                      type="text"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      placeholder="Search for shoes..."
+                      className="flex-1 text-lg border-none outline-none bg-transparent placeholder-gray-400"
+                    />
+                  </div>
+                  <div className="flex gap-2">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setSearchOpen(false)
+                        setSearchQuery('')
+                      }}
+                      className="px-3 py-1 text-gray-500 hover:text-gray-700"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      className="px-4 py-1 bg-blue-600 text-white rounded hover:bg-blue-700"
+                    >
+                      Search
+                    </button>
+                  </div>
+                </form>
+              </div>
+            )}
+
             {/* Menubar */}
             <div className="flex gap-2 mt-1.5">
-                 <NavLink to="/search" className="hidden md:flex">
-                   <IoSearchOutline size={20} className="font-bold bg-white w-8 rounded-2xl" />
-                 </NavLink>
+                 <button onClick={toggleSearch} className="search-container hidden md:flex group">
+                   <IoSearchOutline size={20} className={`font-bold bg-white w-8 rounded-2xl transition-transform duration-200 ${searchOpen ? 'scale-110 text-blue-600' : 'hover:scale-105'}`} />
+                 </button>
                  
                <button className="hidden md:flex group relative cursor-pointer ">
                  <CiUser size={20} className="font-bold bg-white w-8 rounded-2xl hidden md:flex" /> 
@@ -129,9 +207,9 @@ function NavSection(){
                         <LiaTimesSolid onClick={()=> setBarOpen(false)} size={30} className="  cursor-pointer" />
                      </div>
                      <div className="flex content-center gap-6 mr-4">
-                         <NavLink to="/search" onClick={()=> setBarOpen(false)}>
-                           <IoSearchOutline size={30} className="font-bold" />
-                         </NavLink>
+                         <button onClick={()=> { setSearchOpen(!searchOpen); setBarOpen(false) }} className="search-container">
+                           <IoSearchOutline size={30} className={`font-bold transition-transform duration-200 ${searchOpen ? 'scale-110 text-blue-600' : 'hover:scale-105'}`} />
+                         </button>
                          <div className="relative">
                            <NavLink to="/cart" onClick={()=> setBarOpen(false)}>
                              <HiOutlineShoppingBag size={30} className="font-bold" />
@@ -144,6 +222,41 @@ function NavSection(){
                          </div>
                       </div>
                   </div>
+                  
+                  {/* Mobile Search Bar */}
+                  {searchOpen && (
+                    <div className="search-container md:hidden px-4 py-3 border-t border-gray-200">
+                      <form onSubmit={handleSearch} className="flex items-center gap-3">
+                        <div className="flex-1 flex items-center gap-2 bg-gray-100 rounded-lg px-3 py-2">
+                          <IoSearchOutline size={20} className="text-gray-400" />
+                          <input
+                            type="text"
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            placeholder="Search for shoes..."
+                            className="flex-1 bg-transparent border-none outline-none text-sm"
+                          />
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setSearchOpen(false)
+                            setSearchQuery('')
+                          }}
+                          className="px-3 py-2 text-gray-500 text-sm"
+                        >
+                          Cancel
+                        </button>
+                        <button
+                          type="submit"
+                          className="px-4 py-2 bg-blue-600 text-white rounded text-sm"
+                        >
+                          Search
+                        </button>
+                      </form>
+                    </div>
+                  )}
+
                   <div className="flex flex-col gap-3 mt-2">
                    <div className="flex flex-col gap-3 mt-2">
                     {navLinks.map((l,i)=> (

@@ -40,11 +40,16 @@ function SignUp(){
                     
                     setLoading(true);
                     try { 
+                        console.log('Attempting to register:', { name: form.name, email: form.email });
                         register({ name: form.name, email: form.email, password: form.password }); 
+                        console.log('Registration successful');
                         toast.success('Account created successfully!'); 
                         setTimeout(() => navigate('/'), 1500);
                     }
-                    catch (err) { toast.error(err.message || 'Could not sign up'); }
+                    catch (err) { 
+                        console.error('Registration error:', err);
+                        toast.error(err.message || 'Could not sign up'); 
+                    }
                     finally { setLoading(false); }
                 }} className='mt-4'>
                     <div className='flex flex-col gap-4  '>
@@ -79,11 +84,12 @@ function SignUp(){
                         </div>
                         <p className='text-xs font-medium text-end'>Forgot Password?</p>
                     </div>
+                    <div className='mt-8'>
+                        <button type="submit" disabled={loading} className={`text-white font-bold w-[400px] rounded-sm h-12 ${loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'}`}>
+                            {loading ? 'Creating Account...' : 'Sign Up'}
+                        </button>
+                    </div>
                 </form>
-                <div className='mt-8'>
-                    <button type="submit" disabled={loading} className={`text-white font-bold w-[400px] rounded-sm h-12 ${loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'}`}>
-                        {loading ? 'Creating Account...' : 'Sign Up'}
-                    </button>
                     <div className='flex items-center justify-center gap-1.5 mt-4'>
                         <hr className=' w-20 border-gray-300' />
                         <span className='text-xs text-gray-400'>Or Sign Up With</span>
@@ -101,8 +107,6 @@ function SignUp(){
 
             </div>
         </div>
-       </div>
-
     )
 }
 
