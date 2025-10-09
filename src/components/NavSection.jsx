@@ -189,4 +189,3 @@ function NavSection(){
 
 
 export default NavSection;
-export default NavSection;
