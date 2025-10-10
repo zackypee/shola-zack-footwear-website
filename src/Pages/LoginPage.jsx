@@ -54,14 +54,14 @@ function LoginPage(){
     }
     
     return(
-       <div className='bg-white '>
-         <div className='flex mt-24 gap-20  rounded-3xl justify-center items-center'>
-            <div className='w-96 hidden md:flex'><img className='rounded-3xl' src="/login.png" alt="" /></div>
+       <div className='bg-white min-h-screen'>
+         <div className='flex flex-col md:flex-row mt-20 gap-8 md:gap-20 rounded-3xl justify-center items-center px-4'>
+            <div className='w-80 md:w-96 hidden md:flex'><img className='rounded-3xl' src="/login.png" alt="" /></div>
             {/* login info */}
             <div className='flex flex-col'>
                 <div className='flex items-center gap-4 justify-center'>
+                    <div className='bg-blue-700 rounded-3xl h-10 w-10 content-center justify-center px-1.5'><GiMorgueFeet className='text-white' size={25} /></div>
                     <p className='font-bold text-2xl'>ZS </p>
-                     <div className='bg-blue-700 rounded-3xl h-10 w-10 content-center justify-center px-1.5'><GiMorgueFeet className='text-white' size={25} /></div>
                 </div>
                 <div className='text-center'>
                     <h1 className='font-bold text-4xl mt-4'>Welcome Back</h1>
@@ -87,13 +87,13 @@ function LoginPage(){
                     finally { setLoading(false); }
                 }} className='mt-4'>
                     <div className='flex flex-col gap-4  '>
-                        <input id="email" value={form.email} onChange={(e)=> setForm({...form, email: e.target.value})} type="email" name="email" required autoComplete="email" placeholder='Email address' className='placeholder-gray-500 placeholder-opacity-75 h-12 w-[400px] bg-gray-200
+                        <input id="email" value={form.email} onChange={(e)=> setForm({...form, email: e.target.value})} type="email" name="email" required autoComplete="email" placeholder='Email address' className='placeholder-gray-500 placeholder-opacity-75 h-12 w-full max-w-[400px] bg-gray-200
                         rounded-sm px-3 py-1.5 sm:text-sm/6 outline-1 -outline-offset-1 outline-white/10
                         focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500' />
                        <div className='relative '>
                           <input id="password" value={form.password} onChange={(e)=> setForm({...form, password: e.target.value})}
                           type={showPassword ? "text" : "password"} name="password" 
-                         required autoComplete="current-password" placeholder='Password' className='placeholder-gray-500 placeholder-opacity-75 h-12 w-[400px] bg-gray-200
+                         required autoComplete="current-password" placeholder='Password' className='placeholder-gray-500 placeholder-opacity-75 h-12 w-full max-w-[400px] bg-gray-200
                          rounded-sm px-3 py-1.5 sm:text-sm/6 outline-1 -outline-offset-1 outline-white/10
                          focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500' />
                          <button type='button'
@@ -104,18 +104,17 @@ function LoginPage(){
                         <p className='text-xs font-medium text-end'>Forgot Password?</p>
                     </div>
                     <div className='mt-8'>
-                        <button type="submit" disabled={loading} className={`text-white font-bold w-[400px] rounded-sm h-12 ${loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'}`}>
+                        <button type="submit" disabled={loading} className={`text-white font-bold w-full max-w-[400px] rounded-sm h-12 ${loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'}`}>
                             {loading ? 'Logging in...' : 'Login'}
                         </button>
                     </div>
                 </form>
-                    <div className='flex items-center justify-center gap-1.5 mt-4'>
-                        <hr className=' w-20 border-gray-300' />
-                        <span className='text-xs text-gray-400'>Or Login With</span>
-                        <hr className=' w-20 border-gray-300' />
-                    </div>
-                    
+                <div className='flex items-center justify-center gap-1.5 mt-4'>
+                    <hr className=' w-20 border-gray-300' />
+                    <span className='text-xs text-gray-400'>Or Login With</span>
+                    <hr className=' w-20 border-gray-300' />
                 </div>
+                
                 <div className='flex gap-4 mt-8 justify-center items-center '>
                     <button 
                         onClick={handleGoogleLogin}
@@ -136,6 +135,7 @@ function LoginPage(){
 
             </div>
         </div>
+       </div>
     )
 }
 

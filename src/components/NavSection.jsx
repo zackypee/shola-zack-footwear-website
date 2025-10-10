@@ -17,6 +17,8 @@ function NavSection(){
     const[barOpen,setBarOpen] = useState(false)
     const[searchOpen,setSearchOpen] = useState(false)
     const[searchQuery,setSearchQuery] = useState('')
+    const[searchResults,setSearchResults] = useState([])
+    const[searchLoading,setSearchLoading] = useState(false)
     const location = useLocation()
     const navigate = useNavigate()
     const { totals } = useCart()
@@ -33,6 +35,7 @@ function NavSection(){
             if (searchOpen && !event.target.closest('.search-container')) {
                 setSearchOpen(false)
                 setSearchQuery('')
+                setSearchResults([])
             }
         }
 
@@ -45,13 +48,22 @@ function NavSection(){
         }
     }, [searchOpen])
 
-    // Handle search functionality
-    const handleSearch = (e) => {
+    // Handle search functionality - inline search without navigation
+    const handleSearch = async (e) => {
         e.preventDefault()
         if (searchQuery.trim()) {
-            navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`)
-            setSearchOpen(false)
-            setSearchQuery('')
+            setSearchLoading(true)
+            try {
+                const response = await fetch(`/api/search?q=${encodeURIComponent(searchQuery.trim())}`)
+                const data = await response.json()
+                setSearchResults(data.products || [])
+                toast.success(`Found ${data.products?.length || 0} results for "${searchQuery.trim()}"`)
+            } catch (error) {
+                toast.error('Search failed')
+                setSearchResults([])
+            } finally {
+                setSearchLoading(false)
+            }
         }
     }
 
@@ -124,37 +136,70 @@ function NavSection(){
             {/* Search Bar - Desktop */}
             {searchOpen && (
               <div className="search-container hidden md:flex absolute top-full left-0 right-0 bg-white shadow-lg border-t z-40">
-                <form onSubmit={handleSearch} className="w-full flex items-center p-4">
-                  <div className="flex-1 flex items-center gap-3">
-                    <IoSearchOutline size={20} className="text-gray-400" />
+                <form onSubmit={handleSearch} className="w-full flex items-center px-4 py-3">
+                  <div className="flex-1 flex items-center gap-2 bg-gray-50 rounded-lg px-3 py-2">
+                    <IoSearchOutline size={18} className="text-gray-400" />
                     <input
                       id="navbar-search"
                       type="text"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       placeholder="Search for shoes..."
-                      className="flex-1 text-lg border-none outline-none bg-transparent placeholder-gray-400"
+                      className="flex-1 text-sm border-none outline-none bg-transparent placeholder-gray-500"
                     />
                   </div>
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 ml-3">
                     <button
                       type="button"
                       onClick={() => {
                         setSearchOpen(false)
                         setSearchQuery('')
                       }}
-                      className="px-3 py-1 text-gray-500 hover:text-gray-700"
+                      className="px-3 py-1 text-sm text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded"
                     >
                       Cancel
                     </button>
                     <button
                       type="submit"
-                      className="px-4 py-1 bg-blue-600 text-white rounded hover:bg-blue-700"
+                      disabled={searchLoading}
+                      className={`px-4 py-1 text-sm text-white rounded ${searchLoading ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'}`}
                     >
-                      Search
+                      {searchLoading ? 'Searching...' : 'Search'}
                     </button>
                   </div>
                 </form>
+              </div>
+            )}
+
+            {/* Search Results - Desktop */}
+            {searchOpen && searchResults.length > 0 && (
+              <div className="search-container hidden md:flex absolute top-full left-0 right-0 bg-white shadow-lg border-t z-40 mt-0">
+                <div className="w-full max-h-96 overflow-y-auto">
+                  <div className="p-4">
+                    <h3 className="text-sm font-semibold text-gray-700 mb-3">Search Results ({searchResults.length})</h3>
+                    <div className="grid grid-cols-1 gap-2">
+                      {searchResults.slice(0, 5).map((product) => (
+                        <div key={product.id} className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded cursor-pointer">
+                          <img src={product.thumbnail} alt={product.title} className="w-12 h-12 object-cover rounded" />
+                          <div className="flex-1">
+                            <h4 className="text-sm font-medium text-gray-900">{product.title}</h4>
+                            <p className="text-xs text-gray-500">${product.price}</p>
+                          </div>
+                        </div>
+                      ))}
+                      {searchResults.length > 5 && (
+                        <div className="text-center py-2">
+                          <button 
+                            onClick={() => navigate(`/search?q=${encodeURIComponent(searchQuery)}`)}
+                            className="text-sm text-blue-600 hover:text-blue-800"
+                          >
+                            View all {searchResults.length} results →
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
               </div>
             )}
 
@@ -226,15 +271,15 @@ function NavSection(){
                   {/* Mobile Search Bar */}
                   {searchOpen && (
                     <div className="search-container md:hidden px-4 py-3 border-t border-gray-200">
-                      <form onSubmit={handleSearch} className="flex items-center gap-3">
+                      <form onSubmit={handleSearch} className="flex items-center gap-2">
                         <div className="flex-1 flex items-center gap-2 bg-gray-100 rounded-lg px-3 py-2">
-                          <IoSearchOutline size={20} className="text-gray-400" />
+                          <IoSearchOutline size={18} className="text-gray-400" />
                           <input
                             type="text"
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                             placeholder="Search for shoes..."
-                            className="flex-1 bg-transparent border-none outline-none text-sm"
+                            className="flex-1 bg-transparent border-none outline-none text-sm placeholder-gray-500"
                           />
                         </div>
                         <button
@@ -243,15 +288,16 @@ function NavSection(){
                             setSearchOpen(false)
                             setSearchQuery('')
                           }}
-                          className="px-3 py-2 text-gray-500 text-sm"
+                          className="px-3 py-2 text-gray-500 text-sm hover:bg-gray-100 rounded"
                         >
                           Cancel
                         </button>
                         <button
                           type="submit"
-                          className="px-4 py-2 bg-blue-600 text-white rounded text-sm"
+                          disabled={searchLoading}
+                          className={`px-3 py-2 text-white rounded text-sm ${searchLoading ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'}`}
                         >
-                          Search
+                          {searchLoading ? 'Searching...' : 'Search'}
                         </button>
                       </form>
                     </div>
