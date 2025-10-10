@@ -14,6 +14,44 @@ function LoginPage(){
     const navigate = useNavigate();
     const [form, setForm] = useState({ email: '', password: '' })
     const [loading, setLoading] = useState(false);
+
+    // Handle Google Login
+    const handleGoogleLogin = () => {
+        toast.loading('Redirecting to Google...', { duration: 2000 })
+        // For demo purposes, try to login with mock Google user
+        setTimeout(() => {
+            try {
+                const mockGoogleUser = {
+                    email: 'user@gmail.com',
+                    password: 'google_auth_' + Date.now()
+                }
+                login(mockGoogleUser)
+                toast.success('Logged in with Google!')
+                setTimeout(() => navigate('/'), 1500)
+            } catch (err) {
+                toast.error('Google login failed: ' + err.message)
+            }
+        }, 2000)
+    }
+
+    // Handle Facebook Login
+    const handleFacebookLogin = () => {
+        toast.loading('Redirecting to Facebook...', { duration: 2000 })
+        // For demo purposes, try to login with mock Facebook user
+        setTimeout(() => {
+            try {
+                const mockFacebookUser = {
+                    email: 'user@facebook.com',
+                    password: 'facebook_auth_' + Date.now()
+                }
+                login(mockFacebookUser)
+                toast.success('Logged in with Facebook!')
+                setTimeout(() => navigate('/'), 1500)
+            } catch (err) {
+                toast.error('Facebook login failed: ' + err.message)
+            }
+        }, 2000)
+    }
     
     return(
        <div className='bg-white '>
@@ -79,8 +117,18 @@ function LoginPage(){
                     
                 </div>
                 <div className='flex gap-4 mt-8 justify-center items-center '>
-                    <button className='border  border-gray-200 w-[190px] h-12 rounded-sm flex gap-2 items-center justify-center font-bold'><FcGoogle size={25} />Google</button>
-                    <button className='border border-gray-200 w-[190px] h-12 rounded-sm flex gap-2 items-center justify-center font-bold'><SiFacebook size={25} className='text-blue-600'/>Facebook</button>
+                    <button 
+                        onClick={handleGoogleLogin}
+                        className='border border-gray-200 w-[190px] h-12 rounded-sm flex gap-2 items-center justify-center font-bold hover:bg-gray-50 transition-colors'
+                    >
+                        <FcGoogle size={25} />Google
+                    </button>
+                    <button 
+                        onClick={handleFacebookLogin}
+                        className='border border-gray-200 w-[190px] h-12 rounded-sm flex gap-2 items-center justify-center font-bold hover:bg-gray-50 transition-colors'
+                    >
+                        <SiFacebook size={25} className='text-blue-600'/>Facebook
+                    </button>
                 </div>
                 <div>
                     <p className='text-xs text-gray-400 text-center mt-4'>Don't have an account? <span className='text-blue-600 underline'><NavLink to="/signup">Signup</NavLink></span></p>

@@ -16,6 +16,46 @@ function SignUp(){
     const [form, setForm] = useState({ name: '', email: '', password: '', confirmPassword: '' })
     const [loading, setLoading] = useState(false);
     const onChange = (e) => setForm({ ...form, [e.target.id]: e.target.value })
+
+    // Handle Google Signup
+    const handleGoogleSignup = () => {
+        toast.loading('Redirecting to Google...', { duration: 2000 })
+        // For demo purposes, create a mock Google user
+        setTimeout(() => {
+            try {
+                const mockGoogleUser = {
+                    name: 'Google User',
+                    email: 'user@gmail.com',
+                    password: 'google_auth_' + Date.now()
+                }
+                register(mockGoogleUser)
+                toast.success('Signed up with Google!')
+                setTimeout(() => navigate('/'), 1500)
+            } catch (err) {
+                toast.error('Google signup failed: ' + err.message)
+            }
+        }, 2000)
+    }
+
+    // Handle Facebook Signup
+    const handleFacebookSignup = () => {
+        toast.loading('Redirecting to Facebook...', { duration: 2000 })
+        // For demo purposes, create a mock Facebook user
+        setTimeout(() => {
+            try {
+                const mockFacebookUser = {
+                    name: 'Facebook User',
+                    email: 'user@facebook.com',
+                    password: 'facebook_auth_' + Date.now()
+                }
+                register(mockFacebookUser)
+                toast.success('Signed up with Facebook!')
+                setTimeout(() => navigate('/'), 1500)
+            } catch (err) {
+                toast.error('Facebook signup failed: ' + err.message)
+            }
+        }, 2000)
+    }
     
     return(
        <div className='bg-white '>
@@ -98,8 +138,18 @@ function SignUp(){
                     
                 </div>
                 <div className='flex gap-4 mt-8 justify-center items-center '>
-                    <button className='border  border-gray-200 w-[190px] h-12 rounded-sm flex gap-2 items-center justify-center font-bold'><FcGoogle size={25} />Google</button>
-                    <button className='border border-gray-200 w-[190px] h-12 rounded-sm flex gap-2 items-center justify-center font-bold'><SiFacebook size={25} className='text-blue-600'/>Facebook</button>
+                    <button 
+                        onClick={handleGoogleSignup}
+                        className='border border-gray-200 w-[190px] h-12 rounded-sm flex gap-2 items-center justify-center font-bold hover:bg-gray-50 transition-colors'
+                    >
+                        <FcGoogle size={25} />Google
+                    </button>
+                    <button 
+                        onClick={handleFacebookSignup}
+                        className='border border-gray-200 w-[190px] h-12 rounded-sm flex gap-2 items-center justify-center font-bold hover:bg-gray-50 transition-colors'
+                    >
+                        <SiFacebook size={25} className='text-blue-600'/>Facebook
+                    </button>
                 </div>
                 <div>
                     <p className='text-xs text-gray-400 text-center mt-4'>Already have an account? <span className='text-blue-600 underline'><NavLink to="/login">Login</NavLink></span></p>
