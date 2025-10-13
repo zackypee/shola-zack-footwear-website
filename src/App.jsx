@@ -50,12 +50,9 @@ function App(){
            <Route path='/signup' element ={<SignUp/>} />
            <Route path='/search' element ={<Search/>} />
            <Route path='/admin' element ={<Admin/>} />
-
+           <Route path='/cart' element={<Cart/>} />
+           <Route path='/checkout' element={<Checkout/>} />
             </Routes>
-           <Routes>
-             <Route path='/cart' element={<Cart/>} />
-             <Route path='/checkout' element={<Checkout/>} />
-           </Routes>
         
         
         </>

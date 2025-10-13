@@ -8,9 +8,5 @@ export default defineConfig({
     tailwindcss(),
     react()
   ],
-  server: {
-    proxy: {
-      '/api': 'http://localhost:3001'
-    }
-  }
+  // Proxy removed for Vercel deployment - API functions handle routing
 })
