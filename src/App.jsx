@@ -38,7 +38,6 @@ function App(){
         
            <Route path='/men' element ={<Men/>} />
             <Route path='/women' element ={<Women/>} />
-             <Route path='/kids' element ={<Kids/>} />
            <Route path='/contact' element ={<Contact/>} />
            <Route path='/about' element ={<About/>} />
            <Route path='/login' element ={<LoginPage/>} />
